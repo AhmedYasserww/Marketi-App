@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/core/widgets/custom_button.dart';
+import 'package:marketi_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:marketi_app/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -43,7 +44,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           decorator:   const DotsDecorator(
               color: Colors.grey,
               size:  Size(10.0, 10.0),
-              activeSize:  Size(16.0, 16.0),
+              activeSize:  Size(15.0, 15.0),
             activeColor: AppColors.primaryColor,
 
           ),
@@ -60,13 +61,13 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                   curve: Curves.easeInOut,
                 );
               } else {
-
+                  Navigator.pushReplacementNamed(context, SignInView.routeName);
               }
             },
             text: currentIndex==2? "Get Started":
             "Next",),
         ),
-        const SizedBox(height: 43)
+        const SizedBox(height: 32)
       ],
     );
   }
