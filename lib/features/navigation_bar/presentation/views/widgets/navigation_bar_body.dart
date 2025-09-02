@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/features/home/presentation/views/home_view.dart';
 class NavigationBarBody extends StatefulWidget {
   const NavigationBarBody({super.key});
   @override
@@ -9,9 +10,9 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
 
   List<Widget> views = const [
     HomeView(),
-    CartView(),
-    FavoriteView(),
-    ProfileView()
+    // CartView(),
+    // FavoriteView(),
+    // ProfileView()
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
             BottomNavigationBarItem(icon: Icon(Icons.home),label: "home"),
             BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded),label: "cart"),
             BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined),label: "favourite"),
-            BottomNavigationBarItem(icon: Icon(Icons.person),label: "profile"),
+            BottomNavigationBarItem(icon: Icon(Icons.menu),label: "profile"),
 
 
           ],),
