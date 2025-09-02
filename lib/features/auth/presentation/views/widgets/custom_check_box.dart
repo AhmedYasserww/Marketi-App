@@ -1,35 +1,43 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
 
-import '../../../../../core/utils/app_color.dart';
 class CustomCheckBox extends StatelessWidget {
-  const CustomCheckBox({super.key,  required this.isChecked, required this.onCheckBoxPressed });
-final bool isChecked;
-final ValueChanged<bool> onCheckBoxPressed;
+  final bool isChecked;
+  final ValueChanged<bool> onCheckBoxPressed;
+  final double size;
+
+  const CustomCheckBox({
+    super.key,
+    required this.isChecked,
+    required this.onCheckBoxPressed,
+    this.size = 24,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        onCheckBoxPressed(!isChecked);
-      },
+    return InkWell(
+      onTap: () => onCheckBoxPressed(!isChecked),
+      borderRadius: BorderRadius.circular(4),
       child: AnimatedContainer(
-        width: 24,
-          height: 24,
-          duration: const Duration(milliseconds: 100),
-        decoration: ShapeDecoration(
-          color:isChecked ? AppColors.primaryColor : Colors.white,
-          shape: RoundedRectangleBorder(
-            side:  BorderSide(width: 1.50, color:isChecked ? Colors.transparent : const Color(0xFFDCDEDE)),
-            borderRadius: BorderRadius.circular(8),
+        duration: const Duration(milliseconds: 200),
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: isChecked ? AppColors.lightPrimaryColor : Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            color: Colors.grey,
+            width: 1,
           ),
         ),
-        child:isChecked?Padding(
-          padding: const EdgeInsets.all(2),
-          child: SvgPicture.asset(AppImages.checkIcon),
-        ) :
-            SizedBox()
+        child: isChecked
+            ?  Padding(
+              padding: const EdgeInsets.all(3),
+              child: SvgPicture.asset(AppImages.checkIcon),
+            )
+            : null,
       ),
     );
   }

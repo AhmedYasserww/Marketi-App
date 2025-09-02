@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_email_text_field.dart';
+import 'package:marketi_app/features/auth/presentation/views/widgets/custom_navigate_to_register.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_password_text_field.dart';
-
+import 'package:marketi_app/features/auth/presentation/views/widgets/custom_remember_me.dart';
+import 'package:marketi_app/features/auth/presentation/views/widgets/social_icon_widgets.dart';
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
 
@@ -22,37 +24,59 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       visible = !visible;
     });
   }
+
   @override
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.initState();
   }
+
   @override
-  dispose() {
+  void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22),
-        child: Form(
-          key: formKey,
-          autovalidateMode: autoValidateMode,
-          child: Column(
-            children: [
-              Center(child: Image.asset(AppImages.logo)),
-              EmailField(emailController: emailController),
-              PasswordField(passwordController: passwordController , visible: visible, toggleVisibility: toggleVisibility,)
+    return Center(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          child: Form(
+            key: formKey,
+            autovalidateMode: autoValidateMode,
+            child: Column(
+              children: [
+                Center(child: Image.asset(AppImages.logo)),
+                const SizedBox(height: 32),
+                EmailField(emailController: emailController),
+                const SizedBox(height: 14),
+                PasswordField(
+                  passwordController: passwordController,
+                  visible: visible,
+                  toggleVisibility: toggleVisibility,
+                ),
+                const SizedBox(height: 12),
+                const CustomRememberMe(),
+                const SizedBox(height: 24),
+                const SocialIconsWidget(),
+                const SizedBox(height: 14,),
+                CustomNavigateToRegister(
+                  onPressed: (){
 
-
-            ],
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+
+
