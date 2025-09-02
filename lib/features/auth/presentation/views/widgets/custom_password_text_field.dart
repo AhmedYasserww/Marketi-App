@@ -18,13 +18,14 @@ class PasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextField(
       prefixIcon: const Icon(Icons.lock,color: AppColors.primaryColor,),
-      hintText: "password",
+      labelText: const Text("Password",style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),),
+
       controller: passwordController,
       obscureText: visible,
       validator: (value) => value == null || value.isEmpty ? 'required this field' : null,
       suffixIcon: IconButton(
         onPressed: toggleVisibility,
-        icon: Icon(visible ? Icons.visibility_off : Icons.visibility,color: const Color(0xffC9CECF),),
+        icon: Icon(visible ? Icons.visibility_off : Icons.visibility,color: AppColors.primaryColor),
       ),
 
     );

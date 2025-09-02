@@ -54,7 +54,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: CustomButton(
-            onPressed: () {
+            onTap: () {
               if (currentIndex < 2) {
                 pageController.nextPage(
                   duration: const Duration(milliseconds: 300),

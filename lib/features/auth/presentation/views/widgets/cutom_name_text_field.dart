@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../Core/widgets/custom_text_form_field_widget.dart';
+import 'package:marketi_app/Core/widgets/custom_text_form_field_widget.dart';
 class NameField extends StatelessWidget {
   final TextEditingController nameController;
 
@@ -9,8 +9,9 @@ class NameField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextField(
       controller: nameController,
-      validator: (value) => value == null || value.isEmpty ? 'الاسم مطلوب' : null,
-     hintText: "الاسم كامل",
+      validator: (value) => value == null || value.isEmpty ? 'Field is required' : null,
+      prefixIcon: const Icon(Icons.person),
+      labelText: const Text("UserName",style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),),
     );
   }
 }

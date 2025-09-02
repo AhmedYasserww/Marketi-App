@@ -12,7 +12,8 @@ class EmailField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextField(
       prefixIcon: const Icon(Icons.email_outlined,color: AppColors.primaryColor,),
-      hintText: "Username or Email",
+      labelText: const Text("Email",style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),),
+
       controller: emailController,
       validator: (value) {
         if (value == null || value.isEmpty) {

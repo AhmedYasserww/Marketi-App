@@ -64,3 +64,4 @@ style: TextStyle(color: AppColors.primaryColor),
     );
    }
 }
+

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
+import 'package:marketi_app/core/widgets/custom_button.dart';
+import 'package:marketi_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_email_text_field.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_navigate_to_register.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_password_text_field.dart';
@@ -61,12 +63,19 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 ),
                 const SizedBox(height: 12),
                 const CustomRememberMe(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
+                CustomButton(
+                  text: "Log in",
+                  onTap:(){
+
+                  } ,
+                ),
+                SizedBox(height: 14,),
                 const SocialIconsWidget(),
                 const SizedBox(height: 14,),
                 CustomNavigateToRegister(
                   onPressed: (){
-
+Navigator.of(context).pushNamed(SignUpView.routeName);
                   },
                 )
               ],
