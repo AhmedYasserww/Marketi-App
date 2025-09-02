@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
+
+import '../../../../../core/utils/app_color.dart';
 class NavigationBarBody extends StatefulWidget {
   const NavigationBarBody({super.key});
   @override
@@ -24,12 +26,12 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
             });
           },
           currentIndex: selectedIndex,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
+          selectedItemColor: AppColors.lightPrimaryColor,
+          unselectedItemColor: const Color(0xff67687E),
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home),label: "home"),
             BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded),label: "cart"),
-            BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined),label: "favourite"),
+            BottomNavigationBarItem(icon: Icon(Icons.favorite),label: "favourite"),
             BottomNavigationBarItem(icon: Icon(Icons.menu),label: "profile"),
 
 
