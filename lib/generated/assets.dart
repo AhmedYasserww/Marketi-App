@@ -5,10 +5,13 @@ class Assets {
   static const String imagesAppleIcon = 'assets/images/apple_icon.svg';
   static const String imagesCheckIcon = 'assets/images/check_icon.svg';
   static const String imagesFacebookIcon = 'assets/images/facebook_icon.svg';
+  static const String imagesFilterIcon = 'assets/images/filterIcon.svg';
   static const String imagesGoogleIcon = 'assets/images/google_icon.svg';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesOnboarding2 = 'assets/images/_Onboarding_2.svg';
   static const String imagesOnboardingImage1 = 'assets/images/onboarding_image_1.svg';
   static const String imagesOnboardingImage3 = 'assets/images/onboarding_image_3.svg';
+  static const String imagesProfile = 'assets/images/profile.png';
+  static const String imagesSearchIcon = 'assets/images/Search_Icon.svg';
 
 }
