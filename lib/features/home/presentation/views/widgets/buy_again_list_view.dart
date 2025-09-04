@@ -12,7 +12,8 @@ class BuyAgainListView extends StatelessWidget {
         itemCount: 6,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
-          return const CustomProductItem(productName: 'Black JBL Airbods',
+          return const CustomProductItem(
+            productName: 'Black JBL Airbods',
             productPrice: "799 LE",
             productImage: "assets/images/Laptop_HP_Chromebook_laptop_test.png",
           );
