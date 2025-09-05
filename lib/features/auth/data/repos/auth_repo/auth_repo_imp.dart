@@ -24,7 +24,12 @@ class AuthRepoImpl implements AuthRepo {
         },
       );
 
-      return Right(AuthModel.fromJson(response));
+      if (response["status"] == true || response["token"] != null) {
+        return Right(AuthModel.fromJson(response));
+      } else {
+        final errorMessage = response["message"] ?? "Invalid email or password";
+        return Left(ServerFailure(errorMessage: errorMessage));
+      }
     } on DioException catch (e) {
       final errorMessage = e.response?.data["message"] ?? "Login failed";
       return Left(ServerFailure(errorMessage: errorMessage));
@@ -32,7 +37,6 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServerFailure(errorMessage: "Unexpected error: $e"));
     }
   }
-
   @override
   Future<Either<Failure, AuthModel>> signUp({
     required String name,

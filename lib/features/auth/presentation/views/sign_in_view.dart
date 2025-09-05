@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi_app/core/service_locator/service_locator.dart';
+import 'package:marketi_app/features/auth/data/repos/auth_repo/auth_repo.dart';
+import 'package:marketi_app/features/auth/data/repos/auth_repo/auth_repo_imp.dart';
+import 'package:marketi_app/features/auth/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/sign_in_view_body.dart';
 
 class SignInView extends StatelessWidget {
@@ -7,14 +12,12 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      // appBar: AppBar(
-      //   leading: CircleAvatar(
-      //
-      //     child: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_new,color: Colors.black,)),
-      //   ),
-      // ),
-      body:SignInViewBody() ,
+    return  BlocProvider(
+      create: (_) => SignInCubit(getIt.get<AuthRepoImpl>()),
+      child: const Scaffold(
+
+        body:SignInViewBody() ,
+      ),
     );
   }
 }

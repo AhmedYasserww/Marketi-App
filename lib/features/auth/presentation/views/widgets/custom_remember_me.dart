@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_check_box.dart';
-class CustomRememberMe extends StatefulWidget {
-  const CustomRememberMe({super.key});
 
-  @override
-  State<CustomRememberMe> createState() => _CustomRememberMeState();
-}
+class CustomRememberMe extends StatelessWidget {
+  final bool isChecked;
+  final ValueChanged<bool> onChanged;
 
-class _CustomRememberMeState extends State<CustomRememberMe> {
-  bool isChecked = false;
+  const CustomRememberMe({
+    super.key,
+    required this.isChecked,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,7 @@ class _CustomRememberMeState extends State<CustomRememberMe> {
       children: [
         CustomCheckBox(
           isChecked: isChecked,
-          onCheckBoxPressed: (value) {
-            setState(() {
-              isChecked = value;
-            });
-          },
+          onCheckBoxPressed: onChanged,
         ),
         const SizedBox(width: 5),
         const Text(
