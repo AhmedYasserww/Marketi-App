@@ -57,12 +57,29 @@ class AuthRepoImpl implements AuthRepo {
         },
       );
 
-      return Right(AuthModel.fromJson(response));
+
+      if (response['statusCode'] == 200 || response['statusCode'] == 201 ||
+          response['success'] == true ||
+          response['message'] == "user created and Verify email send successfully") {
+        return Right(AuthModel.fromJson(response));
+      } else {
+        final errorMessage = response['message'] ?? "Register failed";
+        return Left(ServerFailure(errorMessage: errorMessage));
+      }
     } on DioException catch (e) {
+
+      if (e.response?.statusCode == 200 || e.response?.statusCode == 201) {
+        return Right(AuthModel.fromJson(e.response?.data));
+      }
+
+
       final errorMessage = e.response?.data["message"] ?? "Register failed";
-      return Left(ServerFailure( errorMessage: errorMessage));
+      return Left(ServerFailure(errorMessage: errorMessage));
     } catch (e) {
       return Left(ServerFailure(errorMessage: "Unexpected error: $e"));
     }
   }
+
+
+
 }
