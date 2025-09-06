@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
 
 import '../../../../../core/utils/app_color.dart';
+import '../../../../cart/presentation/views/cart_view.dart';
 class NavigationBarBody extends StatefulWidget {
   const NavigationBarBody({super.key});
   @override
@@ -12,7 +13,7 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
 
   List<Widget> views = const [
     HomeView(),
-    // CartView(),
+     CartView(),
     // FavoriteView(),
     // ProfileView()
   ];

@@ -9,8 +9,7 @@ import 'package:marketi_app/features/auth/presentation/views/widgets/custom_navi
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_password_text_field.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_remember_me.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/social_icon_widgets.dart';
-import 'package:marketi_app/features/home/presentation/views/home_view.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
@@ -61,82 +60,89 @@ class _SignInViewBodyState extends State<SignInViewBody> {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          Navigator.pushReplacementNamed(context, HomeView.routeName);
+          Navigator.pushReplacementNamed(context, ButtonNavBarView.routeName);
         } else if (state is SignInFailure) {
           showErrorMessage(state.errorMessage);
         }
       },
       builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: state is SignInLoading,
-          opacity: 0.4,
-          color: Colors.black,
-          progressIndicator: const CircularProgressIndicator(
-            strokeWidth: 6,
-            color: Colors.deepPurple,
-          ),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Form(
-                  key: formKey,
-                  autovalidateMode: autoValidateMode,
-                  child: Column(
-                    children: [
-                      Center(child: Image.asset(AppImages.logo)),
-                      const SizedBox(height: 32),
-                      EmailField(emailController: emailController),
-                      const SizedBox(height: 14),
-                      PasswordField(
-                        passwordController: passwordController,
-                        visible: visible,
-                        toggleVisibility: toggleVisibility,
-                      ),
-
-                      const SizedBox(height: 20),
-                      CustomRememberMe(
-                        isChecked: rememberMe,
-                        onChanged: (value) {
-                          setState(() {
-                            rememberMe = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      CustomButton(
-                        text: "Log in",
-                        onTap: () {
-                          if(!rememberMe) {
-                            showErrorMessage("Please check 'Remember me' before logging in");
-                            return;
-                          }
-                          if (formKey.currentState!.validate()) {
-                            context.read<SignInCubit>().signIn(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
-                          } else {
+        return Stack(
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  child: Form(
+                    key: formKey,
+                    autovalidateMode: autoValidateMode,
+                    child: Column(
+                      children: [
+                        Center(child: Image.asset(AppImages.logo)),
+                        const SizedBox(height: 32),
+                        EmailField(emailController: emailController),
+                        const SizedBox(height: 14),
+                        PasswordField(
+                          passwordController: passwordController,
+                          visible: visible,
+                          toggleVisibility: toggleVisibility,
+                        ),
+                        const SizedBox(height: 20),
+                        CustomRememberMe(
+                          isChecked: rememberMe,
+                          onChanged: (value) {
                             setState(() {
-                              autoValidateMode = AutovalidateMode.always;
+                              rememberMe = value;
                             });
-                          }
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      const SocialIconsWidget(),
-                      const SizedBox(height: 14),
-                      CustomNavigateToRegister(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed(SignUpView.routeName);
-                        },
-                      ),
-                    ],
+                          },
+                        ),
+                        const SizedBox(height: 14),
+                        CustomButton(
+                          text: "Log in",
+                          onTap: () {
+                            if (!rememberMe) {
+                              showErrorMessage(
+                                  "Please check 'Remember me' before logging in");
+                              return;
+                            }
+                            if (formKey.currentState!.validate()) {
+                              context.read<SignInCubit>().signIn(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                            } else {
+                              setState(() {
+                                autoValidateMode = AutovalidateMode.always;
+                              });
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 14),
+                        const SocialIconsWidget(),
+                        const SizedBox(height: 14),
+                        CustomNavigateToRegister(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(SignUpView.routeName);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+
+            // ⬇ Loading overlay
+            if (state is SignInLoading)
+              Container(
+                color: Colors.black.withOpacity(0.4),
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 6,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+              ),
+          ],
         );
       },
     );

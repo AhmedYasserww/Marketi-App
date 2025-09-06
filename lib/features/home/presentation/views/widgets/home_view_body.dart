@@ -12,7 +12,6 @@ import 'package:marketi_app/features/home/presentation/views/widgets/custom_sect
 import 'package:marketi_app/features/home/presentation/views/widgets/popular_product_list_view.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/search_bar_widget.dart';
 
-import '../../../../../core/utils/app_images.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

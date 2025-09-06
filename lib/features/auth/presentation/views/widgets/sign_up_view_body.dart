@@ -9,7 +9,6 @@ import 'package:marketi_app/features/auth/presentation/views/widgets/custom_pass
 import 'package:marketi_app/features/auth/presentation/views/widgets/custom_phone_number_text_field.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/cutom_name_text_field.dart';
 import 'package:marketi_app/features/auth/presentation/views/widgets/social_icon_widgets.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -62,81 +61,91 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpState>(
-          listener: (context, state) {
-            if (state is SignUpSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.authModel.message),
-                  backgroundColor: Colors.green,
-                ),
-              );
-              Navigator.pop(context);
-            } else if (state is SignUpFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-          },
+      listener: (context, state) {
+        if (state is SignUpSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.authModel.message),
+              backgroundColor: Colors.green,
+            ),
+          );
+          Navigator.pop(context);
+        } else if (state is SignUpFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
       builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: state is SignUpLoading,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Form(
-                  key: formKey,
-                  autovalidateMode: autoValidateMode,
-                  child: Column(
-                    children: [
-                      Center(child: Image.asset(AppImages.logo)),
-                      const SizedBox(height: 12),
-                      NameField(nameController: nameController),
-                      const SizedBox(height: 14),
-                      PhoneNumberField(phoneNumberController: phoneNumberController),
-                      const SizedBox(height: 14),
-                      EmailField(emailController: emailController),
-                      const SizedBox(height: 14),
-                      PasswordField(
-                        passwordController: passwordController,
-                        visible: visiblePassword,
-                        toggleVisibility: togglePasswordVisibility,
-                      ),
-                      const SizedBox(height: 14),
-                      ConfirmPasswordField(
-                        confirmPasswordController: confirmPasswordController,
-                        visible: visibleConfirmPassword,
-                        toggleVisibility: toggleConfirmPasswordVisibility,
-                      ),
-                      const SizedBox(height: 14),
-                      CustomButton(
-                        text: "Sign up",
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            context.read<SignUpCubit>().signUp(
-                              name: nameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                              phone: phoneNumberController.text,
-                              confirmPassword: confirmPasswordController.text,
-                            );
-                          } else {
-                            setState(() => autoValidateMode = AutovalidateMode.always);
-                          }
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      const SocialIconsWidget(),
-                      const SizedBox(height: 14),
-                    ],
+        return Stack(
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  child: Form(
+                    key: formKey,
+                    autovalidateMode: autoValidateMode,
+                    child: Column(
+                      children: [
+                        Center(child: Image.asset(AppImages.logo)),
+                        const SizedBox(height: 12),
+                        NameField(nameController: nameController),
+                        const SizedBox(height: 14),
+                        PhoneNumberField(phoneNumberController: phoneNumberController),
+                        const SizedBox(height: 14),
+                        EmailField(emailController: emailController),
+                        const SizedBox(height: 14),
+                        PasswordField(
+                          passwordController: passwordController,
+                          visible: visiblePassword,
+                          toggleVisibility: togglePasswordVisibility,
+                        ),
+                        const SizedBox(height: 14),
+                        ConfirmPasswordField(
+                          confirmPasswordController: confirmPasswordController,
+                          visible: visibleConfirmPassword,
+                          toggleVisibility: toggleConfirmPasswordVisibility,
+                        ),
+                        const SizedBox(height: 14),
+                        CustomButton(
+                          text: "Sign up",
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              context.read<SignUpCubit>().signUp(
+                                name: nameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                phone: phoneNumberController.text,
+                                confirmPassword: confirmPasswordController.text,
+                              );
+                            } else {
+                              setState(() => autoValidateMode = AutovalidateMode.always);
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 24),
+                        const SocialIconsWidget(),
+                        const SizedBox(height: 14),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+
+
+            if (state is SignUpLoading)
+              Container(
+                color: Colors.black.withOpacity(0.4),
+                child: const Center(
+                  child: CircularProgressIndicator(color: Colors.blue),
+                ),
+              ),
+          ],
         );
       },
     );

@@ -23,6 +23,10 @@ class CustomProductItem extends StatelessWidget {
     this.isFavorite = false,
   });
 
+  bool _isNetworkImage(String path) {
+    return path.startsWith('http') || path.startsWith('https');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +55,21 @@ class CustomProductItem extends StatelessWidget {
                     color: const Color(0xffD9E6FF),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
+                      child: _isNetworkImage(productImage)
+                          ? Image.network(
+                        productImage.replaceAll('\\', '/'),
+                        height: 130,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(
+                            Icons.broken_image,
+                            size: 80,
+                            color: Colors.grey,
+                          );
+                        },
+                      )
+                          : Image.asset(
                         productImage,
                         height: 130,
                         width: double.infinity,
