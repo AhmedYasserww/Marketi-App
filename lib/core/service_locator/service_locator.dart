@@ -3,6 +3,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:marketi_app/features/auth/data/repos/auth_repo/auth_repo_imp.dart';
+import 'package:marketi_app/features/home/data/repos/get_all_brands_repo/get_all_brands_repo.dart';
+import 'package:marketi_app/features/home/data/repos/get_all_brands_repo/get_all_brands_repo_imp.dart';
 import 'package:marketi_app/features/home/data/repos/get_all_categories_repo/get_all_category_repo_imp.dart';
 import 'package:marketi_app/features/home/data/repos/get_all_products_repo/get_all_product_repo_imp.dart';
 
@@ -15,6 +17,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<AuthRepoImpl>(AuthRepoImpl(apiService:getIt.get<ApiService>(),));
   getIt.registerSingleton<GetAllProductRepoImp>(GetAllProductRepoImp(apiService:getIt.get<ApiService>(),));
   getIt.registerSingleton<GetAllCategoryRepoImp>(GetAllCategoryRepoImp(apiService:getIt.get<ApiService>(),));
+  getIt.registerSingleton<GetAllBrandsRepoImp>(GetAllBrandsRepoImp(apiService:getIt.get<ApiService>(),));
 
   // getIt.registerSingleton<AllMaterialRepoImp>(AllMaterialRepoImp(apiService:getIt.get<ApiService>(),
   // ));

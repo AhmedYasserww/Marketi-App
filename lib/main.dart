@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marketi_app/core/helper_functions/on_generate_routes.dart';
 import 'package:marketi_app/features/auth/presentation/views/sign_in_view.dart';
+import 'package:marketi_app/features/home/data/repos/get_all_brands_repo/get_all_brands_repo_imp.dart';
 import 'package:marketi_app/features/home/data/repos/get_all_categories_repo/get_all_category_repo_imp.dart';
 import 'package:marketi_app/features/home/data/repos/get_all_products_repo/get_all_product_repo_imp.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
@@ -17,10 +18,10 @@ void main() async {
   setupServiceLocator();
 
   // ✅ نجيب الريبو من GetIt
-  final getAllCategoriesRepo = getIt<GetAllCategoryRepoImp>();
+  final getAllCategoriesRepo = getIt<GetAllBrandsRepoImp>();
 
   // ✅ نعمل تست على الـ API قبل ما التطبيق يشتغل
-  final result = await getAllCategoriesRepo.fetchAllCategories();
+  final result = await getAllCategoriesRepo.fetchAllBrands();
 
   result.fold(
         (failure) {
