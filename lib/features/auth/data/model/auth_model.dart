@@ -1,25 +1,45 @@
 class AuthModel {
-  final bool status;
-  final int statusCode;
   final String message;
   final String token;
-  final String name;
+  final UserModel user;
 
   AuthModel({
-    required this.status,
-    required this.statusCode,
     required this.message,
     required this.token,
-    required this.name,
+    required this.user,
   });
 
   factory AuthModel.fromJson(Map<String, dynamic> json) {
     return AuthModel(
-      status: json['status'] ?? false,
-      statusCode: json['statusCode'] ?? 0,
       message: json['message'] ?? '',
       token: json['token'] ?? '',
+      user: UserModel.fromJson(json['user'] ?? {}),
+    );
+  }
+}
+
+class UserModel {
+  final String name;
+  final String phone;
+  final String email;
+  final String role;
+  final String image;
+
+  UserModel({
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.role,
+    required this.image,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       name: json['name'] ?? '',
+      phone: json['phone'] ?? '',
+      email: json['email'] ?? '',
+      role: json['role'] ?? '',
+      image: json['image'] ?? '',
     );
   }
 }

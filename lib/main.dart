@@ -11,42 +11,42 @@ import 'package:marketi_app/features/home/presentation/views/home_view.dart';
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 
 import 'core/service_locator/service_locator.dart';
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // ✅ استدعاء الـ Service Locator
-  setupServiceLocator();
-
-  // ✅ نجيب الريبو من GetIt
-  final getAllCategoriesRepo = getIt<GetAllBrandsRepoImp>();
-
-  // ✅ نعمل تست على الـ API قبل ما التطبيق يشتغل
-  final result = await getAllCategoriesRepo.fetchAllBrands();
-
-  result.fold(
-        (failure) {
-      log('❌ API Test Failed: ${failure.errorMessage}');
-    },
-        (categories) {
-      log('✅ API Test Success: ${categories.length} CATEGORIES fetched');
-      log("===================================================");
-
-      for (var category in categories) {
-        log("🆔 ID       : ${category.id}");
-        log("📌 Name     : ${category.name}");
-        log("🖼️ Image    : ${category.imagePath}");
-        log("🔄 Version  : ${category.v}");
-        log("===================================================");
-      }
-    },
-  );
-
-  runApp(const MyApp());
-}
-// void main() {
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//
+//   // ✅ استدعاء الـ Service Locator
 //   setupServiceLocator();
+//
+//   // ✅ نجيب الريبو من GetIt
+//   final getAllCategoriesRepo = getIt<GetAllBrandsRepoImp>();
+//
+//   // ✅ نعمل تست على الـ API قبل ما التطبيق يشتغل
+//   final result = await getAllCategoriesRepo.fetchAllBrands();
+//
+//   result.fold(
+//         (failure) {
+//       log('❌ API Test Failed: ${failure.errorMessage}');
+//     },
+//         (categories) {
+//       log('✅ API Test Success: ${categories.length} CATEGORIES fetched');
+//       log("===================================================");
+//
+//       for (var category in categories) {
+//         log("🆔 ID       : ${category.id}");
+//         log("📌 Name     : ${category.name}");
+//         log("🖼️ Image    : ${category.imagePath}");
+//         log("🔄 Version  : ${category.v}");
+//         log("===================================================");
+//       }
+//     },
+//   );
+//
 //   runApp(const MyApp());
 // }
+void main() {
+  setupServiceLocator();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
 
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoutes,
-        initialRoute: HomeView.routeName,
+        initialRoute: SignInView.routeName,
 
 
     );

@@ -24,7 +24,8 @@ class AuthRepoImpl implements AuthRepo {
         },
       );
 
-      if (response["status"] == true || response["token"] != null) {
+      if (response['statusCode'] == 200 || response['statusCode'] == 201 ||
+          response['success'] == true || response["token"] != null) {
         return Right(AuthModel.fromJson(response));
       } else {
         final errorMessage = response["message"] ?? "Invalid email or password";
@@ -58,9 +59,8 @@ class AuthRepoImpl implements AuthRepo {
       );
 
 
-      if (response['statusCode'] == 200 || response['statusCode'] == 201 ||
-          response['success'] == true ||
-          response['message'] == "user created and Verify email send successfully") {
+      if  (response["token"] != null &&
+      (response["message"] == "login successfully" || response["message"] == "Login successfully")){
         return Right(AuthModel.fromJson(response));
       } else {
         final errorMessage = response['message'] ?? "Register failed";

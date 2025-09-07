@@ -2,12 +2,11 @@ import 'package:dio/dio.dart';
 
 class ApiService {
   static const String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWNhZTQyYjNiMWEzMWY0ZTA2MTdjYyIsImlhdCI6MTc1NzEwOTc1Mn0.kQ2eVikQp6tbgKo8bWxEG1-U65RJum4Ov-zQYq8jJ5c";
-
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YmUwZWI1ZjhlYmVjOWY0ODFiNmM4MiIsImlhdCI6MTc1NzI4NjMzNSwiZXhwIjoxNzU5ODc4MzM1fQ.0DfJ14cHbqrVUuj0E28fqquDl-sQNwMocHh16x70-bw";
   final Dio dio;
   ApiService({required this.dio});
 
-  final String baseUrl = "https://marketi-app.onrender.com/api/v1/";
+  final String baseUrl = "https://supermarket-dan1.onrender.com/api/v1/";
 
   Future<dynamic> get({
     required String endPoint,
