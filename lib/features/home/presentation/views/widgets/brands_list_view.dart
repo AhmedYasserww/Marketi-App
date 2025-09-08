@@ -8,12 +8,7 @@ class BrandsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> brandImages = [
-      "assets/images/Town_Team_test.png",
-      "assets/images/JBL_test.png",
-      "assets/images/SONY_Brand_test.png",
 
-    ];
     return BlocBuilder<GetAllBrandsCubit, GetAllBrandsState>(
       builder: (context, state) {
         if (state is GetAllBrandsLoading) {
@@ -46,7 +41,7 @@ class BrandsListView extends StatelessWidget {
                 final brand = brands[index];
                 return CustomBrandItem(
                   brandName: brand.name ?? "Unknown",
-                  imageUrl: brandImages[index],
+                 emoji: brand.emoji ?? "❓",
                 );
               },
             ),

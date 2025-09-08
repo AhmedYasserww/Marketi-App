@@ -1,27 +1,27 @@
 class CategoryModel {
   CategoryModel({
-      this.id, 
+      this.slug, 
       this.name, 
-      this.imagePath, 
-      this.v,});
+      this.url, 
+      this.image,});
 
   CategoryModel.fromJson(dynamic json) {
-    id = json['_id'];
+    slug = json['slug'];
     name = json['name'];
-    imagePath = json['imagePath'];
-    v = json['__v'];
+    url = json['url'];
+    image = json['image'];
   }
-  String? id;
+  String? slug;
   String? name;
-  String? imagePath;
-  int? v;
+  String? url;
+  String? image;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['_id'] = id;
+    map['slug'] = slug;
     map['name'] = name;
-    map['imagePath'] = imagePath;
-    map['__v'] = v;
+    map['url'] = url;
+    map['image'] = image;
     return map;
   }
 

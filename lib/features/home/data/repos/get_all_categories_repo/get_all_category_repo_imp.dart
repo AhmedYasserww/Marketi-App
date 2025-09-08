@@ -19,7 +19,7 @@ class GetAllCategoryRepoImp implements GetAllCategoryRepo {
 
       );
 
-      log("📦 Raw API Response: $response");
+    //  log("📦 Raw API Response: $response");
 
       if (response is Map<String, dynamic> && response.containsKey('list')) {
         final List categoriesJson = response['list'];

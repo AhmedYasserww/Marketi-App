@@ -3,12 +3,12 @@ import 'package:marketi_app/core/utils/app_color.dart';
 
 class CustomBrandItem extends StatelessWidget {
   final String brandName;
-  final String imageUrl;
+  final String emoji;
 
   const CustomBrandItem({
     super.key,
     required this.brandName,
-    required this.imageUrl,
+    required this.emoji,
   });
 
   @override
@@ -25,20 +25,14 @@ class CustomBrandItem extends StatelessWidget {
             child: SizedBox(
               height: 100,
               width: 105,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child:Image.asset(
-                  imageUrl,
-                )
-              //   imageUrl.isNotEmpty
-              //       ? Image.network(
-              //     imageUrl,
-              //     fit: BoxFit.cover,
-              //     errorBuilder: (_, __, ___) =>
-              //         Image.asset("assets/images/SONY_Brand_test.png"),
-              //   )
-              //       : Image.asset("assets/images/SONY_Brand_test.png"),
-               ),
+              child: Center(
+                child: Text(
+                  emoji.isNotEmpty ? emoji : "❓",
+                  style: const TextStyle(
+                    fontSize: 60,
+                  ),
+                ),
+              ),
             ),
           ),
         ),

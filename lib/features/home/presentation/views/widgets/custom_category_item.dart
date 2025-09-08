@@ -27,8 +27,8 @@ class CustomCategoryItem extends StatelessWidget {
               width: 96,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  categoryImage.replaceAll("\\", "/"),
+                child: Image.network(
+                  categoryImage,
                   fit: BoxFit.cover,
 
 

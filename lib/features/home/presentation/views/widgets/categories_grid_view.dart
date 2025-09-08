@@ -8,16 +8,6 @@ class CategoriesGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> categoryImages = [
-      "assets/images/Electronics_test.png",
-      "assets/images/Fashion_test.png",
-      "assets/images/Food_test.png",
-      "assets/images/Pampers_test.png",
-      "assets/images/Laptop_HP_Chromebook_laptop_test.png",
-      "assets/images/Phone_2.png",
-      "assets/images/Plant_test.png",
-
-    ];
     return BlocConsumer<GetAllCategoriesCubit, GetAllCategoriesState>(
       listener: (context, state) {
         if (state is GetAllCategoriesFailure) {
@@ -33,7 +23,7 @@ class CategoriesGridView extends StatelessWidget {
           final categories = state.categories;
 
           return GridView.builder(
-            itemCount: 4,
+            itemCount: 6,
             //itemCount: categories.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -47,7 +37,7 @@ class CategoriesGridView extends StatelessWidget {
               final category = categories[index];
               return CustomCategoryItem(
                 categoryName: category.name ?? "Unknown",
-                categoryImage: categoryImages[index],
+                categoryImage: category.image?? "https://dummyimage.com/600x400/cccccc/000000&text=No+Ima",
               );
             },
           );
