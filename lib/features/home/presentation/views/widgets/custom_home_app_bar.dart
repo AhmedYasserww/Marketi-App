@@ -43,7 +43,7 @@ class CustomHomeAppBar extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: AppColors.lightPrimaryColor,
                   radius: 24,
                   child: CircleAvatar(

@@ -12,7 +12,9 @@ class BestForYouListView extends StatelessWidget {
         itemCount: 6,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
-          return const CustomProductItem(productName: 'Black JBL Airbods',
+          return const CustomProductItem(
+            rating: 4.9,
+            productName: 'Black JBL Airbods',
             productPrice: "799 LE",
             productImage: "assets/images/Air_Buds_test.png",
           );

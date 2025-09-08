@@ -16,7 +16,7 @@ class CustomProductItem extends StatelessWidget {
     required this.productName,
     required this.productPrice,
     required this.productImage,
-    this.rating = 4.9,
+    required this.rating ,
     this.onFavorite,
     this.onAdd,
     this.showAddButton = true,

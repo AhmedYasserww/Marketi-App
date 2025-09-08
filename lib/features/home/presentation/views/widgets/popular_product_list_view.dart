@@ -28,11 +28,12 @@ class PopularProductsListView extends StatelessWidget {
             height: 240,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: products.length,
+              itemCount: 10,
               separatorBuilder: (_, __) => const SizedBox(width: 16),
               itemBuilder: (context, index) {
                 final product = products[index];
                 return CustomProductItem(
+                  rating: product.rating ?? 0,
                   productName: product.title ?? "No Name",
                   productImage: (product.images?.isNotEmpty ?? false)
                       ? product.images!.first

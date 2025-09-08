@@ -15,7 +15,7 @@ class GetAllProductRepoImp implements GetAllProductRepo {
   Future<Either<Failure, List<ProductModel>>> fetchAllProducts() async {
     try {
       final response = await apiService.get(
-        endPoint: 'home/products',
+        endPoint: 'home/products?skip=0&limit=25',
 
       );
 

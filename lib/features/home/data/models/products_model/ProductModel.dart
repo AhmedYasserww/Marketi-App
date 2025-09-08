@@ -1,92 +1,115 @@
-import 'Location.dart';
+import 'Dimensions.dart';
+import 'Reviews.dart';
+import 'Meta.dart';
 
 class ProductModel {
   ProductModel({
-    this.location,
-    this.id,
-    this.title,
-    this.price,
-    this.description,
-    this.images,
-    this.rating,
-    this.discount,
-    this.remain,
-    this.sold,
-    this.category,
-    this.brand,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-  });
+      this.id, 
+      this.title, 
+      this.description, 
+      this.category, 
+      this.price, 
+      this.discountPercentage, 
+      this.rating, 
+      this.stock, 
+      this.tags, 
+      this.brand, 
+      this.sku, 
+      this.weight, 
+      this.dimensions, 
+      this.warrantyInformation, 
+      this.shippingInformation, 
+      this.availabilityStatus, 
+      this.reviews, 
+      this.returnPolicy, 
+      this.minimumOrderQuantity, 
+      this.meta, 
+      this.images, 
+      this.thumbnail,});
 
   ProductModel.fromJson(dynamic json) {
-    location = json['location'] != null ? Location.fromJson(json['location']) : null;
-    id = json['_id'];
+    id = json['id'];
     title = json['title'];
-    price = json['price'];
     description = json['description'];
-
-    // ✅ إصلاح روابط الصور هنا
-    if (json['images'] != null) {
-      images = List<String>.from(
-        json['images'].map((img) {
-          final fixedUrl = img.toString().replaceAll('\\', '/');
-          if (fixedUrl.startsWith('http')) {
-            return fixedUrl; // الصورة كاملة وتمام ✅
-          } else {
-            return 'https://marketi-app.onrender.com/$fixedUrl'; // لو رجع مسار نسبي نضيف الـ domain
-          }
-        }),
-      );
-    } else {
-      images = [];
-    }
-    rating = (json['rating'] != null) ? double.tryParse(json['rating'].toString()) : 0.0;
-    discount = json['discount'];
-    remain = json['remain'];
-    sold = json['sold'];
     category = json['category'];
+    price = json['price'];
+    discountPercentage = json['discountPercentage'];
+    rating = json['rating'];
+    stock = json['stock'];
+    tags = json['tags'] != null ? json['tags'].cast<String>() : [];
     brand = json['brand'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    v = json['__v'];
+    sku = json['sku'];
+    weight = json['weight'];
+    dimensions = json['dimensions'] != null ? Dimensions.fromJson(json['dimensions']) : null;
+    warrantyInformation = json['warrantyInformation'];
+    shippingInformation = json['shippingInformation'];
+    availabilityStatus = json['availabilityStatus'];
+    if (json['reviews'] != null) {
+      reviews = [];
+      json['reviews'].forEach((v) {
+        reviews?.add(Reviews.fromJson(v));
+      });
+    }
+    returnPolicy = json['returnPolicy'];
+    minimumOrderQuantity = json['minimumOrderQuantity'];
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
+    images = json['images'] != null ? json['images'].cast<String>() : [];
+    thumbnail = json['thumbnail'];
   }
-
-  Location? location;
-  String? id;
+  int? id;
   String? title;
-  int? price;
   String? description;
-  List<String>? images;
-  double? rating;
-  int? discount;
-  int? remain;
-  int? sold;
   String? category;
+  double? price;
+  double? discountPercentage;
+  double? rating;
+  int? stock;
+  List<String>? tags;
   String? brand;
-  String? createdAt;
-  String? updatedAt;
-  int? v;
+  String? sku;
+  int? weight;
+  Dimensions? dimensions;
+  String? warrantyInformation;
+  String? shippingInformation;
+  String? availabilityStatus;
+  List<Reviews>? reviews;
+  String? returnPolicy;
+  int? minimumOrderQuantity;
+  Meta? meta;
+  List<String>? images;
+  String? thumbnail;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (location != null) {
-      map['location'] = location?.toJson();
-    }
-    map['_id'] = id;
+    map['id'] = id;
     map['title'] = title;
-    map['price'] = price;
     map['description'] = description;
-    map['images'] = images;
-    map['rating'] = rating;
-    map['discount'] = discount;
-    map['remain'] = remain;
-    map['sold'] = sold;
     map['category'] = category;
+    map['price'] = price;
+    map['discountPercentage'] = discountPercentage;
+    map['rating'] = rating;
+    map['stock'] = stock;
+    map['tags'] = tags;
     map['brand'] = brand;
-    map['createdAt'] = createdAt;
-    map['updatedAt'] = updatedAt;
-    map['__v'] = v;
+    map['sku'] = sku;
+    map['weight'] = weight;
+    if (dimensions != null) {
+      map['dimensions'] = dimensions?.toJson();
+    }
+    map['warrantyInformation'] = warrantyInformation;
+    map['shippingInformation'] = shippingInformation;
+    map['availabilityStatus'] = availabilityStatus;
+    if (reviews != null) {
+      map['reviews'] = reviews?.map((v) => v.toJson()).toList();
+    }
+    map['returnPolicy'] = returnPolicy;
+    map['minimumOrderQuantity'] = minimumOrderQuantity;
+    if (meta != null) {
+      map['meta'] = meta?.toJson();
+    }
+    map['images'] = images;
+    map['thumbnail'] = thumbnail;
     return map;
   }
+
 }

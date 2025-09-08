@@ -1,15 +1,11 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marketi_app/core/helper_functions/on_generate_routes.dart';
-import 'package:marketi_app/features/auth/presentation/views/sign_in_view.dart';
-import 'package:marketi_app/features/home/data/repos/get_all_brands_repo/get_all_brands_repo_imp.dart';
-import 'package:marketi_app/features/home/data/repos/get_all_categories_repo/get_all_category_repo_imp.dart';
-import 'package:marketi_app/features/home/data/repos/get_all_products_repo/get_all_product_repo_imp.dart';
-import 'package:marketi_app/features/home/presentation/views/home_view.dart';
+
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'core/local_data/save_user_date.dart';
 import 'core/service_locator/service_locator.dart';
@@ -77,7 +73,7 @@ class MyApp extends StatelessWidget {
 
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoutes,
-        initialRoute: SignInView.routeName,
+        initialRoute: ButtonNavBarView.routeName,
 
 
     );
