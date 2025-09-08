@@ -16,7 +16,7 @@ class GetAllProductRepoImp implements GetAllProductRepo {
     try {
       final response = await apiService.get(
         endPoint: 'home/products',
-        token: ApiService.token,
+
       );
 
      log("📦 Raw API Response: $response");

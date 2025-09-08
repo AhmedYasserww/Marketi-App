@@ -9,8 +9,22 @@ import 'package:marketi_app/features/home/data/repos/get_all_categories_repo/get
 import 'package:marketi_app/features/home/data/repos/get_all_products_repo/get_all_product_repo_imp.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/local_data/save_user_date.dart';
 import 'core/service_locator/service_locator.dart';
+void loadUser() async {
+  final user = await AppPreferences.getUserData();
+
+  if (user != null) {
+    print("Name: ${user.user.name}");
+    print("Email: ${user.user.email}");
+    // print("Phone: ${user.phone}");
+    // print("Image: ${user.image}");
+  } else {
+    print("No user found");
+  }
+}
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //
@@ -43,9 +57,11 @@ import 'core/service_locator/service_locator.dart';
 //
 //   runApp(const MyApp());
 // }
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

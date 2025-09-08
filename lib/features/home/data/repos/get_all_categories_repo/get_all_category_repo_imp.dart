@@ -16,7 +16,7 @@ class GetAllCategoryRepoImp implements GetAllCategoryRepo {
     try {
       final response = await apiService.get(
         endPoint: 'home/categories',
-        token: ApiService.token,
+
       );
 
       log("📦 Raw API Response: $response");

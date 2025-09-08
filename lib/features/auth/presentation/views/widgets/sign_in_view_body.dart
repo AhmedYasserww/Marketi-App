@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi_app/core/local_data/save_user_date.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
 import 'package:marketi_app/core/widgets/custom_button.dart';
 import 'package:marketi_app/features/auth/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
@@ -58,8 +59,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
-      listener: (context, state) {
+      listener: (context, state) async{
         if (state is SignInSuccess) {
+          await AppPreferences.saveUserData(state.authModel);
           Navigator.pushReplacementNamed(context, ButtonNavBarView.routeName);
         } else if (state is SignInFailure) {
           showErrorMessage(state.errorMessage);

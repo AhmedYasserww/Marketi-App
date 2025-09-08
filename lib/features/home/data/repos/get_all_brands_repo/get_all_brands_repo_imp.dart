@@ -16,7 +16,6 @@ class GetAllBrandsRepoImp implements GetAllBrandsRepo {
     try {
       final response = await apiService.get(
         endPoint: 'home/brands',
-        token: ApiService.token,
       );
 
       log(" Raw API Response: $response");
