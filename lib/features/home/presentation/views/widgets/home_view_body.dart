@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi_app/features/home/data/models/categories_model/CategoryModel.dart';
+import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
+import 'package:marketi_app/features/home/presentation/manager/all_products_cubit/get_all_product_cubit.dart';
+import 'package:marketi_app/features/home/presentation/views/view_all_products_view.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/banner_widget.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/brands_list_view.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/categories_grid_view.dart';
@@ -9,7 +14,7 @@ import 'package:marketi_app/features/home/presentation/views/widgets/search_bar_
 
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+  const HomeViewBody({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +36,35 @@ class HomeViewBody extends StatelessWidget {
               SectionHeader(
                 title: "Popular Product",
                 onViewAll: () {
+                  final state = context.read<GetAllProductCubit>().state;
 
+                  if (state is GetAllProductSuccess) {
+                    final productsList = state.products;
+
+                    Navigator.pushNamed(
+                      context,
+                      ViewAllProductsView.routeName,
+                      arguments: productsList,
+                    );
+                  }
                 },
               ),
+
               const SizedBox(height: 8),
               const PopularProductsListView(),
               const SizedBox(height: 14),
               SectionHeader(
                 title: "Category",
-                onViewAll: () {},
+                onViewAll: () {
+                  Navigator.pushNamed(
+                    context,
+                    ViewAllProductsView.routeName,
+                    arguments: {
+                      'model': CategoryModel,
+                      'type': 'categories',
+                    },
+                  );
+                },
               ),
               const SizedBox(height: 8),
               const CategoriesGridView(),

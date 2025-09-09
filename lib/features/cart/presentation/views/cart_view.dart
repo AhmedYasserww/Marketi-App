@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/core/widgets/custom_app_bar.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -7,94 +8,67 @@ static const String routeName='CartView';
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text("Cart"),
-        centerTitle: true,
-        leading: Container(
-          height: 48,
-          width: 48,
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border.all(color: Color(0xffB2CCFF).withOpacity(0.7)),
-          ),
-          child: const Icon(
-            Icons.arrow_back_ios_new_outlined,
-            color: Colors.black,
-          ),
-        ),
-        actions: [
-          CircleAvatar(
-            radius: 24,
-            backgroundColor: Color(0xff3F80FF),
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.white,
-              child: const Icon(Icons.person, color: Colors.black),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppBar(title: "Cart",),
+            Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Text('Products on Cart'),
             ),
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Text('Products on Cart'),
-          ),
-          Expanded(
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return listViewItem();
-              },
-            ),
-          ),
-          Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Color(0xffB2CCFF).withOpacity(0.7)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xffB2CCFF).withOpacity(0.5),
-                    blurRadius: 10,
-                    offset: Offset(0, -1),
-                    spreadRadius: 0,
-                  ),
-                ],
+            Expanded(
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return listViewItem();
+                },
               ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text('Suptotal (3 items)'),
-                      const Spacer(),
-                      Text('EGP 1,120,00'),
-                    ],
-                  ),
-                  SizedBox(height: 14),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff3F80FF),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Text('Checkout'),
+            ),
+            Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Color(0xffB2CCFF).withOpacity(0.7)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xffB2CCFF).withOpacity(0.5),
+                      blurRadius: 10,
+                      offset: Offset(0, -1),
+                      spreadRadius: 0,
                     ),
-                  ),
-                ],
-              )
-          ),
-        ],
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text('Suptotal (3 items)'),
+                        const Spacer(),
+                        Text('EGP 1,120,00'),
+                      ],
+                    ),
+                    SizedBox(height: 14),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xff3F80FF),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: const Text('Checkout'),
+                      ),
+                    ),
+                  ],
+                )
+            ),
+          ],
+        ),
       ),
     );
   }
