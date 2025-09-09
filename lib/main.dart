@@ -1,58 +1,10 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marketi_app/core/helper_functions/on_generate_routes.dart';
-
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
-
-
-import 'core/local_data/save_user_date.dart';
 import 'core/service_locator/service_locator.dart';
-void loadUser() async {
-  final user = await AppPreferences.getUserData();
 
-  if (user != null) {
-    print("Name: ${user.user.name}");
-    print("Email: ${user.user.email}");
-    // print("Phone: ${user.phone}");
-    // print("Image: ${user.image}");
-  } else {
-    print("No user found");
-  }
-}
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//
-//   // ✅ استدعاء الـ Service Locator
-//   setupServiceLocator();
-//
-//   // ✅ نجيب الريبو من GetIt
-//   final getAllCategoriesRepo = getIt<GetAllBrandsRepoImp>();
-//
-//   // ✅ نعمل تست على الـ API قبل ما التطبيق يشتغل
-//   final result = await getAllCategoriesRepo.fetchAllBrands();
-//
-//   result.fold(
-//         (failure) {
-//       log('❌ API Test Failed: ${failure.errorMessage}');
-//     },
-//         (categories) {
-//       log('✅ API Test Success: ${categories.length} CATEGORIES fetched');
-//       log("===================================================");
-//
-//       for (var category in categories) {
-//         log("🆔 ID       : ${category.id}");
-//         log("📌 Name     : ${category.name}");
-//         log("🖼️ Image    : ${category.imagePath}");
-//         log("🔄 Version  : ${category.v}");
-//         log("===================================================");
-//       }
-//     },
-//   );
-//
-//   runApp(const MyApp());
-// }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
@@ -73,7 +25,7 @@ class MyApp extends StatelessWidget {
 
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoutes,
-        initialRoute: ButtonNavBarView.routeName,
+        initialRoute: ButtonNavBarView.routeName
 
 
     );

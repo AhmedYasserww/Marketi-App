@@ -24,6 +24,7 @@ class ViewAllProductsGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         final product = productsList[index];
         return CustomProductItem(
+          productModel: productsList[index],
           productName: product.title ?? "Unnamed Product",
           productPrice: "${product.price} EGP",
           productImage: product.thumbnail ?? "",

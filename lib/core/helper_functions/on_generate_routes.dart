@@ -7,6 +7,7 @@ import 'package:marketi_app/features/home/data/models/brands_model/BrandModel.da
 import 'package:marketi_app/features/home/data/models/categories_model/CategoryModel.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
+import 'package:marketi_app/features/home/presentation/views/product_details_view.dart';
 import 'package:marketi_app/features/home/presentation/views/view_all_brands_view.dart';
 import 'package:marketi_app/features/home/presentation/views/view_all_categories_view.dart';
 import 'package:marketi_app/features/home/presentation/views/view_all_products_view.dart';
@@ -48,6 +49,11 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
         return MaterialPageRoute(builder: (context) => const ViewAllBrandsView(),
           settings: settings
         );
+        case ProductDetailsView.routeName:
+          final productModel = settings.arguments as ProductModel;
+          return MaterialPageRoute(builder: (context) => ProductDetailsView(
+            productModel:productModel ,
+          ));
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

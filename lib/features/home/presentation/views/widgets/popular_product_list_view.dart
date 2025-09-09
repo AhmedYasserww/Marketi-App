@@ -33,6 +33,7 @@ class PopularProductsListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final product = products[index];
                 return CustomProductItem(
+                  productModel: state.products[index],
                   rating: product.rating ?? 0,
                   productName: product.title ?? "No Name",
                   productImage: (product.images?.isNotEmpty ?? false)
