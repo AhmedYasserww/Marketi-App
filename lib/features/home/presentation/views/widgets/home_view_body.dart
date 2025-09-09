@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi_app/features/home/data/models/categories_model/CategoryModel.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
+import 'package:marketi_app/features/home/presentation/manager/all_brands_cubit/get_all_brands_cubit.dart';
+import 'package:marketi_app/features/home/presentation/manager/all_categories_cubit/get_all_categories_cubit.dart';
 import 'package:marketi_app/features/home/presentation/manager/all_products_cubit/get_all_product_cubit.dart';
+import 'package:marketi_app/features/home/presentation/views/view_all_brands_view.dart';
+import 'package:marketi_app/features/home/presentation/views/view_all_categories_view.dart';
 import 'package:marketi_app/features/home/presentation/views/view_all_products_view.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/banner_widget.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/brands_list_view.dart';
@@ -56,14 +60,17 @@ class HomeViewBody extends StatelessWidget {
               SectionHeader(
                 title: "Category",
                 onViewAll: () {
-                  Navigator.pushNamed(
-                    context,
-                    ViewAllProductsView.routeName,
-                    arguments: {
-                      'model': CategoryModel,
-                      'type': 'categories',
-                    },
-                  );
+                  final state = context.read<GetAllCategoriesCubit>().state;
+
+                  if (state is GetAllCategoriesSuccess) {
+                    final categoriesList = state.categories;
+
+                    Navigator.pushNamed(
+                      context,
+                      ViewAllCategoriesView.routeName,
+                      arguments: categoriesList,
+                    );
+                  }
                 },
               ),
               const SizedBox(height: 8),
@@ -79,7 +86,19 @@ class HomeViewBody extends StatelessWidget {
               const SizedBox(height: 14),
               SectionHeader(
                 title: "Brands",
-                onViewAll: () {},
+                onViewAll: () {
+                  final state = context.read<GetAllBrandsCubit>().state;
+
+                  if (state is GetAllBrandsSuccess) {
+                    final brandsList = state.brands;
+
+                    Navigator.pushNamed(
+                      context,
+                      ViewAllBrandsView.routeName,
+                      arguments: brandsList,
+                    );
+                  }
+                },
               ),
               const SizedBox(height: 8),
               const BrandsListView(),
