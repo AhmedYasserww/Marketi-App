@@ -28,7 +28,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
 
       return TextFormField(
-style: TextStyle(color: AppColors.primaryColor),
+style: const TextStyle(color: AppColors.primaryColor),
         keyboardType: keyboardType,
         controller: controller ,
         obscureText:obscureText,
@@ -43,7 +43,7 @@ style: TextStyle(color: AppColors.primaryColor),
             hintText:hintText ,
             suffixIcon: suffixIcon,
 
-              hintStyle: const TextStyle(fontSize: 12,
+              hintStyle: const TextStyle(fontSize: 16,
                   fontWeight: FontWeight.w400,
                 color:  Color(0xff929BAB)
               ),

@@ -15,6 +15,7 @@ import 'package:marketi_app/features/navigation_bar/presentation/views/button_na
 import 'package:marketi_app/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/on_boarding/presentation/views/on_boarding_view.dart';
+import '../../features/search/presentations/views/search_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -54,6 +55,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
           return MaterialPageRoute(builder: (context) => ProductDetailsView(
             productModel:productModel ,
           ));
+          case SearchView.routeName:
+            return MaterialPageRoute(builder: (context) => const SearchView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
