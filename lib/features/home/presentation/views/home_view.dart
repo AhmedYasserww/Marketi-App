@@ -25,6 +25,7 @@ class HomeView extends StatelessWidget {
         BlocProvider(
           create: (_) => GetAllBrandsCubit(getIt.get<GetAllBrandsRepoImp>())..fetchAllBrands(),
         ),
+
       ],
       child: const Scaffold(
         body:HomeViewBody() ,

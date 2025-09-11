@@ -32,9 +32,10 @@ class _SearchViewBodyState extends State<SearchViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, bottom: 6.0),
+      padding: const EdgeInsets.only(top: 16, bottom: 16),
       child: Column(
         children: [
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: CustomTextField(

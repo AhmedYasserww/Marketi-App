@@ -12,6 +12,19 @@ class ViewAllProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (productsList.isEmpty) {
+      return const Center(
+        child: Text(
+          "No products available for this category now.",
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey,
+            fontWeight: FontWeight.w500,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
     return GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 14),
       itemCount: productsList.length,
@@ -20,6 +33,7 @@ class ViewAllProductsGridView extends StatelessWidget {
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
         childAspectRatio: 0.62,
+
       ),
       itemBuilder: (context, index) {
         final product = productsList[index];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/features/home/data/models/brands_model/BrandModel.dart';
+import 'package:marketi_app/features/home/presentation/views/widgets/search_bar_widget.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/view_all_screen_widgets/view_all_brands_grid_view.dart';
 
 import '../../../../../../core/widgets/custom_app_bar.dart';
@@ -13,6 +14,11 @@ final List<BrandModel> brandsList;
         children: [
           const SizedBox(height: 16),
           const CustomAppBar(title: "Brands"),
+          const SizedBox(height: 12),
+          const Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 14),
+            child:  SearchBarWidget(),
+          ),
           const SizedBox(height: 12),
           Expanded(
             child: ViewAllBrandsGridView(

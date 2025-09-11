@@ -28,7 +28,7 @@ class GetAllCategoryRepoImp implements GetAllCategoryRepo {
             .map((item) => CategoryModel.fromJson(item))
             .toList();
 
-        log('✅ Fetched ${categories.length} products');
+        log('✅ Fetched ${categories.length} categories');
         return right(categories);
       } else {
         log('⚠️ Unexpected API response format: $response');

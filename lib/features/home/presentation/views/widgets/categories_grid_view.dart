@@ -36,6 +36,7 @@ class CategoriesGridView extends StatelessWidget {
             itemBuilder: (context, index) {
               final category = categories[index];
               return CustomCategoryItem(
+
                 categoryName: category.name ?? "Unknown",
                 categoryImage: category.image?? "https://dummyimage.com/600x400/cccccc/000000&text=No+Ima",
               );

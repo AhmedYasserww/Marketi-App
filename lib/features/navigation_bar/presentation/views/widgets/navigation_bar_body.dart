@@ -37,7 +37,7 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
 
 
           ],),
-        backgroundColor: const Color(0xffD6DAD8),
+        backgroundColor: Colors.white,
         body: views.elementAt(selectedIndex)
     );
   }

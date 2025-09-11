@@ -1,9 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marketi_app/core/helper_functions/on_generate_routes.dart';
+import 'package:marketi_app/features/home/data/repos/get_all_products_by_single_category_repo/get_all_product_by_single_product_repo_imp.dart';
+import 'package:marketi_app/features/home/data/repos/product_filter/product_filter_repo_imp.dart';
+import 'package:marketi_app/features/home/presentation/manager/all_product_by_single_category_cubit/get_all_product_by_single_category_cubit.dart';
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 import 'core/service_locator/service_locator.dart';
+import 'features/home/presentation/manager/filter_product/get_filter_product_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,18 +22,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-        theme:  ThemeData(
-            scaffoldBackgroundColor: Colors.white,
-          textTheme: GoogleFonts.poppinsTextTheme(),
+    return  MultiBlocProvider(
+      providers: [
+
+
+       BlocProvider(
+
+            create: (_) => GetAllProductBySingleCategoryCubit(getIt.get<GetAllProductBySingleProductRepoImp>()),
+          ),
+        BlocProvider(
+          create: (_) => GetFilterProductCubit(getIt.get<GetFilteredProductsRepoImp>()),
         ),
+      ],
 
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: onGenerateRoutes,
-        initialRoute: ButtonNavBarView.routeName
+        child: MaterialApp(
+            theme:  ThemeData(
+                scaffoldBackgroundColor: Colors.white,
+              textTheme: GoogleFonts.poppinsTextTheme(),
+            ),
+
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: onGenerateRoutes,
+            initialRoute: ButtonNavBarView.routeName
 
 
-    );
+        ),
+      );
+
   }
 }
 

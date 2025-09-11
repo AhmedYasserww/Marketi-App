@@ -1,25 +1,26 @@
+
 import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:marketi_app/core/errors/faluire.dart';
 import 'package:marketi_app/core/network/api_service.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
-import 'package:marketi_app/features/home/data/repos/get_all_products_repo/get_all_product_repo.dart';
+import 'package:marketi_app/features/home/data/repos/get_all_products_by_single_category_repo/get_all_product_by_single_category_repo.dart';
 
-class GetAllProductRepoImp implements GetAllProductRepo {
+class GetAllProductBySingleProductRepoImp implements GetAllProductBySingleCategoryRepo {
   final ApiService apiService;
 
-  GetAllProductRepoImp({required this.apiService});
-
+  GetAllProductBySingleProductRepoImp({required this.apiService});
   @override
-  Future<Either<Failure, List<ProductModel>>> fetchAllProducts() async {
+  Future<Either<Failure, List<ProductModel>>> fetchAllProductsBySingleCategory(String category) async {
     try {
       final response = await apiService.get(
-        endPoint: 'home/products?skip=0&limit=25',
+        endPoint: 'home/products/category/$category?&limit=20',
 
       );
 
-     //log("📦 Raw API Response: $response");
+      //log("📦 Raw API Response: $response");
 
       if (response is Map<String, dynamic> && response.containsKey('list')) {
         final List productsJson = response['list'];
@@ -42,4 +43,5 @@ class GetAllProductRepoImp implements GetAllProductRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
 }

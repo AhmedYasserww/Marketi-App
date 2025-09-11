@@ -10,9 +10,10 @@ static const String routeName = 'search-view';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocProvider<SearchForProductCubit>(
           create: (context) =>getIt<SearchForProductCubit>(),
-          child: const SearchViewBody()) ,
+          child: const SafeArea(child:  SearchViewBody())) ,
     );
 
   }

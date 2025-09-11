@@ -18,7 +18,7 @@ class GetAllBrandsRepoImp implements GetAllBrandsRepo {
         endPoint: 'home/brands',
       );
 
-      log(" Raw API Response: $response");
+   //   log(" Raw API Response: $response");
 
       if (response is Map<String, dynamic> && response.containsKey('list')) {
         final List brandsJson = response['list'];
@@ -27,7 +27,7 @@ class GetAllBrandsRepoImp implements GetAllBrandsRepo {
             .map((item) => BrandModel.fromJson(item))
             .toList();
 
-        log('✅ Fetched ${brands.length} products');
+        log('✅ Fetched ${brands.length} brands');
         return right(brands);
       } else {
         log('⚠️ Unexpected API response format: $response');
