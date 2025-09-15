@@ -25,7 +25,7 @@ class PopularProductsListView extends StatelessWidget {
           final products = state.products;
 
           return SizedBox(
-            height: 240,
+            height: 280,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
@@ -33,6 +33,8 @@ class PopularProductsListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final product = products[index];
                 return CustomProductItem(
+
+                  onAdd:(){} ,
                   productModel: state.products[index],
                   rating: product.rating ?? 0,
                   productName: product.title ?? "No Name",
@@ -40,7 +42,7 @@ class PopularProductsListView extends StatelessWidget {
                       ? product.images!.first
                       : "assets/images/Smart_Watch_test.png",
                   productPrice: "${product.price ?? 0} LE",
-                  showAddButton: false,
+                  showAddButton: true,
                 );
               },
             ),
