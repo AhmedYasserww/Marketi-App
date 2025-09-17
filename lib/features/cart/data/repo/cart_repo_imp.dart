@@ -18,13 +18,13 @@ class CartRepoImp implements CartRepo {
         endPoint: 'user/getCart',
       );
 
-      log("📦 Raw API Response Cart Repo: $response");
+      log("📦 Raw API Response Cart Repo get cart: $response");
 
       if (response is Map<String, dynamic>) {
         final outerList = response['list'];
 
         if (outerList is List) {
-          // كل عنصر في الـ list هو منتج
+
           final cartItems = outerList
               .map((item) => ProductModel.fromJson(item as Map<String, dynamic>))
               .toList();
@@ -76,10 +76,30 @@ class CartRepoImp implements CartRepo {
 
 
   @override
-  Future<Either<Failure, List<ProductModel>>> deleteFromCart({required String productId}) {
-    // TODO: implement deleteFromCart
-    throw UnimplementedError();
+  Future<Either<Failure, String>> deleteFromCart({required String productId}) async {
+    try {
+      final response = await apiService.delete(
+        endPoint: 'user/deleteCart',
+        data: {"productId": productId},
+      );
+
+      log("🗑️ Raw API Response delete from cart: $response");
+
+      if (response is Map<String, dynamic> && response['message'] is String) {
+        return right(response['message']);
+      } else {
+        log("⚠️ Unexpected API response format: $response");
+        return left(ServerFailure(errorMessage: "Unexpected API response format"));
+      }
+    } on DioException catch (e) {
+      log('❌ DioException (DeleteFromCart): ${e.message}');
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      log('❌ Unexpected Error (DeleteFromCart): $e');
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
+
 
 
 }

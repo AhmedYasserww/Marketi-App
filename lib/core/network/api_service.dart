@@ -58,4 +58,32 @@ class ApiService {
       }
     }
   }
+  Future<dynamic> delete({
+    required String endPoint,
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      final token = await AppPreferences.getToken();
+
+      final response = await dio.delete(
+        "$baseUrl$endPoint",
+        data: data,
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            if (token != null) "Authorization": "Bearer $token",
+          },
+        ),
+      );
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        return e.response?.data;
+      } else {
+        throw Exception("Network error: ${e.message}");
+      }
+    } catch (e) {
+      throw Exception("Unexpected error: $e");
+    }
+  }
 }

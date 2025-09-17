@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/features/home/data/models/filter_product_model/filter_product_model.dart';
-import 'package:marketi_app/features/home/presentation/manager/all_product_by_single_category_cubit/get_all_product_by_single_category_cubit.dart';
 import 'package:marketi_app/features/home/presentation/manager/filter_product/get_filter_product_cubit.dart';
 import 'package:marketi_app/features/home/presentation/views/view_all_products_view.dart';
 
@@ -20,37 +19,37 @@ class CustomCategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        final cubit = context.read<GetAllProductBySingleCategoryCubit>();
-
-        await cubit.fetchAllProductsBySingleCategory(category: categoryName ?? "");
-
-        final state = cubit.state;
-
-        if (state is GetAllProductBySingleCategorySuccess) {
-          Navigator.pushNamed(context, ViewAllProductsView.routeName, arguments: state.products);
-        } else if (state is GetAllProductBySingleCategoryFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.errorMessage)),
-          );
-        }
-      },
-      // filter product => بيأدى نفس الغرض انا كاتبه للمارسه ممكن استخنى عن اللى فوق واكتب ده مكانه
-      // onTap: ()async{
-      //   final cubit = context.read<GetFilterProductCubit>();
+      // onTap: () async {
+      //   final cubit = context.read<GetAllProductBySingleCategoryCubit>();
       //
-      //   await cubit.fetchFilteredProducts(FilterProductsRequest(category: categoryName));
+      //   await cubit.fetchAllProductsBySingleCategory(category: categoryName ?? "");
       //
       //   final state = cubit.state;
       //
-      //   if (state is GetFilterProductSuccess) {
-      //     Navigator.pushNamed(context, ViewAllProductsView.routeName, arguments: state.filterProductsList);
-      //   } else if (state is GetFilterProductFailure) {
+      //   if (state is GetAllProductBySingleCategorySuccess) {
+      //     Navigator.pushNamed(context, ViewAllProductsView.routeName, arguments: state.products);
+      //   } else if (state is GetAllProductBySingleCategoryFailure) {
       //     ScaffoldMessenger.of(context).showSnackBar(
-      //       SnackBar(content: Text(state.errorMessage),backgroundColor: Colors.red,),
+      //       SnackBar(content: Text(state.errorMessage)),
       //     );
       //   }
       // },
+     // filter product => بيأدى نفس الغرض انا كاتبه للمارسه ممكن استخنى عن اللى فوق واكتب ده مكانه
+        onTap: ()async{
+        final cubit = context.read<GetFilterProductCubit>();
+
+        await cubit.fetchFilteredProducts(FilterProductsRequest(category: categoryName));
+
+        final state = cubit.state;
+
+        if (state is GetFilterProductSuccess) {
+          Navigator.pushNamed(context, ViewAllProductsView.routeName, arguments: state.filterProductsList);
+        } else if (state is GetFilterProductFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.errorMessage),backgroundColor: Colors.red,),
+          );
+        }
+      },
       child: Column(
         children: [
           Container(

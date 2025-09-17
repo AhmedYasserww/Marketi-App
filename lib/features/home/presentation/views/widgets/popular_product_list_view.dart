@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi_app/features/cart/presentation/manager/add_to_cart_cubit/add_to_cart_cubit.dart';
-import 'package:marketi_app/features/cart/presentation/manager/get_cart_cubit/get_cart_cubit.dart';
+import 'package:marketi_app/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:marketi_app/features/home/presentation/manager/all_products_cubit/get_all_product_cubit.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/custom_product_item.dart';
 
@@ -21,8 +21,7 @@ class PopularProductsListView extends StatelessWidget {
             SnackBar(content: Text(state.message)),
           );
 
-          // 🔥 هنا بعد النجاح استدعي getCart عشان يجيب المنتجات المحدثة
-          context.read<GetCartCubit>().getCart();
+          context.read<CartCubit>().getCart();
         } else if (state is AddToCartFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("❌ ${state.errorMessage}")),

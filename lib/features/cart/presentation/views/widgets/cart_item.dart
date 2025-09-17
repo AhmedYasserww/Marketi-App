@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi_app/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/home_view_product_details/product_raiting_widget.dart';
 
@@ -9,14 +11,9 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ratingValue = productModel.rating ?? 0.0;
-    final priceText = productModel.price != null
-        ? "${productModel.price!.toStringAsFixed(2)} EGP"
-        : "--";
-
     return Container(
-      margin: const EdgeInsets.only(right: 14, left: 14, bottom: 14),
+      margin: const EdgeInsets.all(7),
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 14),
-      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color(0xffB2CCFF).withOpacity(0.7)),
@@ -31,12 +28,11 @@ class CartItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // الصورة
+
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: productModel.thumbnail != null && productModel.thumbnail!.isNotEmpty
-                ? Image.network(
-              productModel.thumbnail!,
+            child: Image.network(
+              productModel.thumbnail ?? "",
               width: 107,
               height: 108,
               fit: BoxFit.cover,
@@ -48,27 +44,18 @@ class CartItem extends StatelessWidget {
                   child: const Icon(Icons.broken_image, color: Colors.grey),
                 );
               },
-            )
-                : Container(
-              width: 107,
-              height: 108,
-              color: Colors.grey[200],
-              child: const Icon(Icons.image_not_supported, color: Colors.grey),
             ),
           ),
-
           const SizedBox(width: 12),
 
-          // بيانات المنتج
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // العنوان + ايقونة الفافوريت
+
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // العنوان (يأخذ المساحة المتاحة ويظهر في سطرين كحد أقصى)
                     Expanded(
                       child: Text(
                         productModel.title ?? "",
@@ -77,21 +64,21 @@ class CartItem extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: Color(0xFF0D1B2A), // عدّل اللون لو حبيت
+                          color: Color(0xFF0D1B2A),
                         ),
                       ),
                     ),
-
-                    const SizedBox(width: 8),
-
-                    // أيقونة المفضلة
-                    const Icon(Icons.favorite, color: Colors.red),
+                    IconButton(
+                      onPressed: () {
+                        context.read<CartCubit>().deleteFromCart(productModel.id.toString());
+                      },
+                      icon: const Icon(Icons.close, color: Colors.red),
+                    )
                   ],
                 ),
 
                 const SizedBox(height: 6),
 
-                // الـ category مع مسافة وفاصلة إذا احتجت
                 Text(
                   productModel.category ?? "",
                   maxLines: 1,
@@ -105,29 +92,25 @@ class CartItem extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                // صف السعر + الريتينج (النجوم + القيمة الرقمية)
                 Row(
                   children: [
-                    // السعر
                     Text(
-                      priceText,
+                    productModel.price != null ? "${productModel.price} \$" : "--",
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
                       ),
                     ),
-
                     const Spacer(),
-
-                    // النجوم + قيمة الريتينج
                     Row(
                       children: [
                         ProductRatingWidget(rating: ratingValue),
                         const SizedBox(width: 6),
                         Text(
                           ratingValue.toStringAsFixed(1),
-                          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                          style: const TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -136,14 +119,32 @@ class CartItem extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                // أزرار الحذف/الكمية/إضافة
                 Row(
                   children: [
-                    _circleButton(Icons.delete, Colors.red),
+
+                    GestureDetector(
+                      onTap: () {
+                        final newQty = (productModel.quantity ) - 1;
+                        context.read<CartCubit>().updateQuantity(productModel, newQty);
+                      },
+                      child: _circleButton(Icons.remove, Colors.red),
+                    ),
+
                     const Spacer(),
-                    const Text('1', style: TextStyle(fontSize: 16)),
+                    Text(
+                      '${productModel.quantity }',
+                      style: const TextStyle(fontSize: 16),
+                    ),
                     const Spacer(),
-                    _circleButton(Icons.add, Colors.green),
+
+
+                    GestureDetector(
+                      onTap: () {
+                        final newQty = (productModel.quantity ) + 1;
+                        context.read<CartCubit>().updateQuantity(productModel, newQty);
+                      },
+                      child: _circleButton(Icons.add, Colors.green),
+                    ),
                   ],
                 ),
               ],
@@ -166,3 +167,4 @@ class CartItem extends StatelessWidget {
     );
   }
 }
+

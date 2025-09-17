@@ -6,5 +6,6 @@ abstract class CartRepo {
   Future<Either<Failure, List<ProductModel>>> getCart();
 
   Future<Either<Failure, String>> addToCart({required String productId});
-  Future<Either<Failure, List<ProductModel>>> deleteFromCart({required String productId});
+  Future<Either<Failure, String>> deleteFromCart({required String productId});
+
 }
