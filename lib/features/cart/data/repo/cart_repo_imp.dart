@@ -11,8 +11,8 @@ class CartRepoImp implements CartRepo {
   final ApiService apiService;
   CartRepoImp({required this.apiService});
   @override
+  @override
   Future<Either<Failure, List<ProductModel>>> getCart() async {
-
     try {
       final response = await apiService.get(
         endPoint: 'user/getCart',
@@ -20,28 +20,24 @@ class CartRepoImp implements CartRepo {
 
       log("📦 Raw API Response Cart Repo: $response");
 
-      if (response is Map<String, dynamic> && response.containsKey('list')) {
+      if (response is Map<String, dynamic>) {
+        final outerList = response['list'];
 
-        final List outerList = response['list'] ?? [];
+        if (outerList is List) {
+          // كل عنصر في الـ list هو منتج
+          final cartItems = outerList
+              .map((item) => ProductModel.fromJson(item as Map<String, dynamic>))
+              .toList();
 
-        final List cartJson = outerList.expand((outerItem) {
-          if (outerItem is Map<String, dynamic> &&
-              outerItem.containsKey('list')) {
-            return outerItem['list'];
-          }
-          return [];
-        }).toList();
-
-
-        final cartItems =
-        cartJson.map((item) => ProductModel.fromJson(item)).toList();
-
-        log('✅ Fetched ${cartItems.length} products from cart');
-        return right(cartItems);
+          log('✅ Fetched ${cartItems.length} products from cart');
+          return right(cartItems);
+        } else {
+          log('⚠️ `list` is not a List in response: $outerList');
+          return left(ServerFailure(errorMessage: "`list` is not a valid list"));
+        }
       } else {
         log('⚠️ Unexpected API response format: $response');
-        return left(ServerFailure(
-            errorMessage: "Unexpected API response format for cart"));
+        return left(ServerFailure(errorMessage: "Unexpected API response format"));
       }
     } on DioException catch (e) {
       log('❌ DioException: ${e.message}');
@@ -51,6 +47,7 @@ class CartRepoImp implements CartRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
 
   @override
   Future<Either<Failure, String>> addToCart({required String productId}) async {
@@ -62,9 +59,10 @@ class CartRepoImp implements CartRepo {
 
       log("🛒 Raw API Response AddToCart: $response");
 
-      if (response is Map<String, dynamic> && response.containsKey('message')) {
+      if (response is Map<String, dynamic> && response['message'] is String) {
         return right(response['message']);
       } else {
+        log("⚠️ Unexpected API response format: $response");
         return left(ServerFailure(errorMessage: "Unexpected API response format"));
       }
     } on DioException catch (e) {

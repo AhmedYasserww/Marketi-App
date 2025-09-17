@@ -12,13 +12,10 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => GetCartCubit(getIt.get<CartRepoImp>())..getCart(),
-      child: const Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: CartViewBody(),
-        ),
+    return const Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: CartViewBody(),
       ),
     );
   }

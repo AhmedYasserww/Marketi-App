@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi_app/core/widgets/custom_button.dart';
+import 'package:marketi_app/features/cart/presentation/manager/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/home_view_product_details/product_raiting_widget.dart';
@@ -142,7 +144,11 @@ const SizedBox(height: 8,),
             CommentsSectionOfProductDetails(productModel: productModel),
             CustomButton(
               text: "+ Add To Cart",
-              onTap: () {},
+              onTap: () {
+                context.read<AddToCartCubit>().addToCart(
+                    productId: productModel.id.toString()
+                );
+              },
             )
           ],
         ),

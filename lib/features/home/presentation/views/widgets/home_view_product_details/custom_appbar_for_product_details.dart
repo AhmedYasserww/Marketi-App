@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/features/cart/presentation/views/cart_view.dart';
 
 import '../../../../../../core/utils/app_color.dart';
 
@@ -33,7 +34,7 @@ class CustomAppbarForProductDetails extends StatelessWidget {
 
           GestureDetector(
             onTap: (){
-              Navigator.pop(context);
+              Navigator.pushNamed(context, CartView.routeName);
             },
             child: Container(
               padding: const EdgeInsets.all(14),

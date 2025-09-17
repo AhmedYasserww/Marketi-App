@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/core/widgets/custom_button.dart';
 
 class CartSummary extends StatelessWidget {
   const CartSummary({super.key});
@@ -35,19 +36,7 @@ class CartSummary extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff3F80FF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-              ),
-              onPressed: () {},
-              child: const Text('Checkout'),
-            ),
-          ),
+         CustomButton(text: "Checkout", onTap: (){},)
         ],
       ),
     );
