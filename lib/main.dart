@@ -5,6 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:marketi_app/core/helper_functions/on_generate_routes.dart';
 import 'package:marketi_app/features/cart/data/repo/cart_repo_imp.dart';
 import 'package:marketi_app/features/cart/presentation/manager/add_to_cart_cubit/add_to_cart_cubit.dart';
+import 'package:marketi_app/features/favorite/data/repos/favorite_repo_imp.dart';
+import 'package:marketi_app/features/favorite/presentation/manager/add_to_favorite_cubit/add_to_favorite_cubit.dart';
+import 'package:marketi_app/features/favorite/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:marketi_app/features/home/data/repos/product_filter/product_filter_repo_imp.dart';
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
 import 'core/service_locator/service_locator.dart';
@@ -42,12 +45,16 @@ class MyApp extends StatelessWidget {
         // BlocProvider(
         //   create: (_) => DeleteFromCartCubit(getIt.get<CartRepoImp>()),
         // ),
-        BlocProvider(
-           create: (_) =>
-    CartCubit(getIt.get<CartRepoImp>())
-    ..getCart(),
-        )
+        // BlocProvider(
+        //   create: (_) => AddToFavoriteCubit(getIt.get<FavoriteRepoImp>()),
+        // ),
 
+        BlocProvider(
+           create: (_) => CartCubit(getIt.get<CartRepoImp>())..getCart(),
+        ),
+        BlocProvider(
+          create: (_) => FavoriteCubit(getIt.get<FavoriteRepoImp>())..getFavorite(),
+        ),
 
 
 

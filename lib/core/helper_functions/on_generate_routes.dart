@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:marketi_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:marketi_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:marketi_app/features/cart/presentation/views/cart_view.dart';
+import 'package:marketi_app/features/favorite/presentation/views/favorite_view.dart';
 import 'package:marketi_app/features/home/data/models/brands_model/BrandModel.dart';
 import 'package:marketi_app/features/home/data/models/categories_model/CategoryModel.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
@@ -33,6 +34,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeView());
       case CartView.routeName:
       return MaterialPageRoute(builder: (context) => const CartView());
+    case FavoriteView.routeName:
+      return MaterialPageRoute(builder: (context) => const FavoriteView());
     case ViewAllProductsView.routeName:
         settings.arguments as List<ProductModel>;
       return MaterialPageRoute(

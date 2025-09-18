@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/features/favorite/presentation/views/favorite_view.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
 
 import '../../../../../core/utils/app_color.dart';
@@ -14,7 +15,7 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
   List<Widget> views = const [
     HomeView(),
      CartView(),
-    // FavoriteView(),
+     FavoriteView(),
     // ProfileView()
   ];
   @override

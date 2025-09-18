@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/core/widgets/custom_app_bar.dart';
 import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
 import 'package:marketi_app/features/home/presentation/views/widgets/search_bar_widget.dart';
@@ -16,6 +17,7 @@ class ViewAllProductsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
           const CustomAppBar(title: "Products"),
@@ -24,7 +26,14 @@ class ViewAllProductsViewBody extends StatelessWidget {
             padding:  EdgeInsets.symmetric(horizontal: 14),
             child:  SearchBarWidget(),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 14),
+          const Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 14),
+            child: Align(
+              alignment: Alignment.topLeft,
+                child: Text("All Products",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: AppColors.primaryColor),)),
+          ),
+          const SizedBox(height: 14,),
           Expanded(
             child: ViewAllProductsGridView(productsList: productsList),
           ),

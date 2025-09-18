@@ -5,7 +5,7 @@ import 'package:marketi_app/features/home/presentation/views/widgets/add_to_cart
 import 'package:marketi_app/features/home/presentation/views/widgets/add_to_favorite_button.dart';
 import '../../../../../core/utils/app_color.dart';
 
-class CustomProductItem extends StatelessWidget {
+class CustomFavoriteItem extends StatelessWidget {
   final String productName;
   final String productPrice;
   final String productImage;
@@ -16,7 +16,7 @@ class CustomProductItem extends StatelessWidget {
   final bool isFavorite;
   final ProductModel productModel;
 
-  const CustomProductItem({
+  const CustomFavoriteItem({
     super.key,
     required this.productName,
     required this.productPrice,
@@ -35,15 +35,16 @@ class CustomProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          ProductDetailsView.routeName,
-          arguments: productModel,
-        );
-      },
-      child: Container(
+      // GestureDetector(
+      // onTap: () {
+      //   Navigator.pushNamed(
+      //     context,
+      //     ProductDetailsView.routeName,
+      //     arguments: productModel,
+      //   );
+      // },
+      //child:
+    return Container(
         width: 190,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -97,7 +98,7 @@ class CustomProductItem extends StatelessWidget {
                   top: 12,
                   right: 12,
                   child: AddToFavoriteButton(
-                    productModel: productModel,
+                   productModel: productModel,
                   ),
                 ),
               ],
@@ -156,8 +157,8 @@ class CustomProductItem extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
+      //   ),
+      // ),
+    ));
   }
 }
