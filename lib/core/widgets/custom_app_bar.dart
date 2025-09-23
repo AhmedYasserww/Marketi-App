@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
+import 'package:marketi_app/features/profile/presentation/views/profile_details_view.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -35,12 +36,18 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
           Text( title,style: const TextStyle(color: AppColors.primaryColor,fontSize: 20,fontWeight: FontWeight.w600),),
-          const CircleAvatar(
-            backgroundColor: AppColors.lightPrimaryColor,
-            radius: 24,
-            child: CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage(AppImages.profile)
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).pushNamed(ProfileDetailsView.routeName);
+
+            },
+            child: const CircleAvatar(
+              backgroundColor: AppColors.lightPrimaryColor,
+              radius: 24,
+              child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage(AppImages.profile)
+              ),
             ),
           ),
         ],

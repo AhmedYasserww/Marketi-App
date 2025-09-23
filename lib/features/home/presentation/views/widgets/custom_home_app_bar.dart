@@ -4,6 +4,7 @@ import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
 
 import 'package:marketi_app/features/auth/data/model/auth_model.dart';
+import 'package:marketi_app/features/profile/presentation/views/profile_details_view.dart';
 
 
 class CustomHomeAppBar extends StatelessWidget {
@@ -43,12 +44,18 @@ class CustomHomeAppBar extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(
-                  backgroundColor: AppColors.lightPrimaryColor,
-                  radius: 24,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage(AppImages.profile)
+                GestureDetector(
+                  onTap: () {
+          Navigator.of(context).pushNamed(ProfileDetailsView.routeName);
+
+                  },
+                  child: const CircleAvatar(
+                    backgroundColor: AppColors.lightPrimaryColor,
+                    radius: 24,
+                    child: CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage(AppImages.profile)
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),

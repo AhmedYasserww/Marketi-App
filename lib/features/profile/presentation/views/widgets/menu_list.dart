@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/features/profile/presentation/views/profile_details_view.dart';
 import 'package:marketi_app/features/profile/presentation/views/widgets/menu_item.dart';
 import 'package:marketi_app/features/profile/presentation/views/widgets/menu_item_data.dart';
 
@@ -12,7 +13,7 @@ class MenuList extends StatelessWidget {
         icon: Icons.person_outlined,
         title: ' Your Profile',
         onTap: (){
-
+Navigator.of(context).pushNamed(ProfileDetailsView.routeName);
         }
       ),
       MenuItemData(
@@ -39,12 +40,5 @@ class MenuList extends StatelessWidget {
     );
   }
 
-  void _handleMenuTap(BuildContext context, String title) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$title tapped'),
-        duration: const Duration(seconds: 1),
-      ),
-    );
-  }
+
 }
