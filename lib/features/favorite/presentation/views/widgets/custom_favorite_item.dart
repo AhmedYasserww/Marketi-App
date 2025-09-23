@@ -35,16 +35,16 @@ class CustomFavoriteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      // GestureDetector(
-      // onTap: () {
-      //   Navigator.pushNamed(
-      //     context,
-      //     ProductDetailsView.routeName,
-      //     arguments: productModel,
-      //   );
-      // },
-      //child:
-    return Container(
+     return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          ProductDetailsView.routeName,
+          arguments: productModel,
+        );
+      },
+      child:
+     Container(
         width: 190,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -140,24 +140,24 @@ class CustomFavoriteItem extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     productName,
-                    maxLines: 1,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 13,
                     ),
                   ),
-                  const SizedBox(height: 6),
-                  if (showAddButton)
-                    AddToCartButton(
-                      productModel: productModel,
-                      onAdd: onAdd,
-                    ),
+                //  const SizedBox(height: 6),
+                  // if (showAddButton)
+                  //   AddToCartButton(
+                  //     productModel: productModel,
+                  //     onAdd: onAdd,
+                  //   ),
                 ],
               ),
             ),
           ],
-      //   ),
+         ),
       // ),
     ));
   }

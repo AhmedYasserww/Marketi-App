@@ -13,8 +13,10 @@ import 'package:marketi_app/features/home/presentation/views/view_all_brands_vie
 import 'package:marketi_app/features/home/presentation/views/view_all_categories_view.dart';
 import 'package:marketi_app/features/home/presentation/views/view_all_products_view.dart';
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
+import 'package:marketi_app/features/profile/presentation/views/profile_view.dart';
 import 'package:marketi_app/features/splash/presentation/views/splash_view.dart';
 
+import '../../features/navigation_bar/presentation/views/widgets/navigation_bar_body.dart';
 import '../../features/on_boarding/presentation/views/on_boarding_view.dart';
 import '../../features/search/presentations/views/search_view.dart';
 
@@ -34,6 +36,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeView());
       case CartView.routeName:
       return MaterialPageRoute(builder: (context) => const CartView());
+    case ProfileView.routeName:
+      return MaterialPageRoute(builder: (context) => const ProfileView());
     case FavoriteView.routeName:
       return MaterialPageRoute(builder: (context) => const FavoriteView());
     case ViewAllProductsView.routeName:

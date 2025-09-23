@@ -25,15 +25,20 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     result.fold(
           (failure) => emit(state.copyWith(isLoading: false, errorMessage: failure.errorMessage)),
           (message) async {
-
-        await getFavorite();
-        emit(state.copyWith(
-          isLoading: false,
-          successMessage: message,
-        ));
+        // هنا نستدعي getFavorite بدون ما يرن emit للـ loading
+        final favoritesResult = await favoriteRepo.getFavorite();
+        favoritesResult.fold(
+              (failure) => emit(state.copyWith(isLoading: false, errorMessage: failure.errorMessage)),
+              (favorites) => emit(state.copyWith(
+            isLoading: false,
+            favoriteItems: favorites,
+            successMessage: message,
+          )),
+        );
       },
     );
   }
+
 
 
 

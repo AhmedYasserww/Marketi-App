@@ -31,7 +31,7 @@ class FavoriteItemGridView extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
-            childAspectRatio: 0.62,
+            childAspectRatio: 0.72,
           ),
           itemBuilder: (context, index) {
             final product = state.favoriteItems[index];
@@ -43,7 +43,7 @@ class FavoriteItemGridView extends StatelessWidget {
               productImage: product.thumbnail ?? "",
               productPrice: product.price?.toString() ?? "0",
               productName: product.title ?? "",
-              showAddButton: true,
+              showAddButton: false,
               isFavorite: true,
               onFavorite: () {
                 if (isFavorite) {
@@ -51,11 +51,6 @@ class FavoriteItemGridView extends StatelessWidget {
                 }
               },
 
-              onAdd: () {
-                context
-                    .read<AddToCartCubit>()
-                    .addToCart(productId: product.id.toString());
-              },
             );
           },
         );
