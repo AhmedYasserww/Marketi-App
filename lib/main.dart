@@ -9,10 +9,11 @@ import 'package:marketi_app/features/cart/presentation/manager/add_to_cart_cubit
 import 'package:marketi_app/features/favorite/data/repos/favorite_repo_imp.dart';
 import 'package:marketi_app/features/favorite/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:marketi_app/features/home/data/repos/product_filter/product_filter_repo_imp.dart';
-import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
+import 'package:marketi_app/features/splash/presentation/views/splash_view.dart';
 import 'core/service_locator/service_locator.dart';
 import 'features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'features/home/presentation/manager/filter_product/get_filter_product_cubit.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  MultiBlocProvider(
       providers: [
 
@@ -76,8 +78,8 @@ class MyApp extends StatelessWidget {
           ),
           themeMode: themeMode,
             onGenerateRoute: onGenerateRoutes,
-            //initialRoute: SplashView.routeName,
-            initialRoute: ButtonNavBarView.routeName
+            initialRoute: SplashView.routeName,
+           // initialRoute: ButtonNavBarView.routeName
 
 
       );

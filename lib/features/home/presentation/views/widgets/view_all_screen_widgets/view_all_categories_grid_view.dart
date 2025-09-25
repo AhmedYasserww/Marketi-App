@@ -13,7 +13,7 @@ final List<CategoryModel> categoriesList;
         crossAxisCount: 2,
         mainAxisSpacing: 6,
         crossAxisSpacing: 6,
-        childAspectRatio: 1.1,
+        childAspectRatio: 1,
       ),
       itemBuilder: (context, index) {
         final category = categoriesList[index];

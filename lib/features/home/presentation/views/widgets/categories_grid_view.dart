@@ -29,7 +29,7 @@ class CategoriesGridView extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: 0.75,
+              childAspectRatio: 0.65,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/core/utils/app_images.dart';
+import 'package:marketi_app/core/utils/app_keys.dart';
 import 'package:marketi_app/features/profile/presentation/views/profile_details_view.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -19,9 +20,16 @@ class CustomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: (){
-              Navigator.pop(context);
-            },
+            onTap: () {
+    if (Navigator.of(context).canPop()) {
+
+    Navigator.of(context).pop();
+    } else {
+
+    navBarKey.currentState?.changeTab(0);
+    }
+    },
+
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(

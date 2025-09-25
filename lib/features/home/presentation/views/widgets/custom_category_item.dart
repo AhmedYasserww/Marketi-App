@@ -60,7 +60,7 @@ class CustomCategoryItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: SizedBox(
-                height: 105,
+                height: 100,
                 width: 96,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),

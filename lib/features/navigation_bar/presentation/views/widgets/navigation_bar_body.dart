@@ -2,19 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:marketi_app/features/favorite/presentation/views/favorite_view.dart';
 import 'package:marketi_app/features/home/presentation/views/home_view.dart';
 import 'package:marketi_app/features/profile/presentation/views/widgets/open_profile_drawer.dart';
-
 import '../../../../../core/utils/app_color.dart';
 import '../../../../cart/presentation/views/cart_view.dart';
+
 class NavigationBarBody extends StatefulWidget {
   const NavigationBarBody({super.key});
 
   @override
-  State<NavigationBarBody> createState() => _NavigationBarBodyState();
+  NavigationBarBodyState createState() => NavigationBarBodyState();
 }
 
-class _NavigationBarBodyState extends State<NavigationBarBody> {
+class NavigationBarBodyState extends State<NavigationBarBody> {
   int selectedIndex = 0;
 
+  void changeTab(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
 
   final List<Widget> views = const [
     HomeView(),
@@ -46,13 +51,11 @@ class _NavigationBarBodyState extends State<NavigationBarBody> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: views.elementAt(selectedIndex),
+      body: IndexedStack(
+        index: selectedIndex,
+        children: views,
+      ),
     );
   }
 }
-
-
-
-
-
 

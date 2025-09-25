@@ -16,7 +16,7 @@ class CustomNavigateToRegister extends StatelessWidget {
             padding: EdgeInsets.zero,
           ),
           child: const Text(
-            "register?",
+            "Sign Up?",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,

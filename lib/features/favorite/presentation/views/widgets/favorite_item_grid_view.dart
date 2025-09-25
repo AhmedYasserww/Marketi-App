@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi_app/core/widgets/custom_empty_screen.dart';
-import 'package:marketi_app/features/cart/presentation/manager/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'package:marketi_app/features/favorite/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:marketi_app/features/favorite/presentation/manager/favorite_cubit/favorite_state.dart';
 import 'package:marketi_app/features/favorite/presentation/views/widgets/custom_favorite_item.dart';
@@ -25,13 +24,13 @@ class FavoriteItemGridView extends StatelessWidget {
         }
 
         return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
+          padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 8),
           itemCount: state.favoriteItems.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
-            childAspectRatio: 0.72,
+            childAspectRatio: 0.65,
           ),
           itemBuilder: (context, index) {
             final product = state.favoriteItems[index];
