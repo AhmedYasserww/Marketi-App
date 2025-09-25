@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketi_app/features/home/data/models/categories_model/CategoryModel.dart';
-import 'package:marketi_app/features/home/data/models/products_model/ProductModel.dart';
 import 'package:marketi_app/features/home/presentation/manager/all_brands_cubit/get_all_brands_cubit.dart';
 import 'package:marketi_app/features/home/presentation/manager/all_categories_cubit/get_all_categories_cubit.dart';
 import 'package:marketi_app/features/home/presentation/manager/all_products_cubit/get_all_product_cubit.dart';
@@ -22,9 +20,9 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffF9FAFB),
-      body: SafeArea(
+    return
+
+       SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Column(
@@ -113,7 +111,7 @@ class HomeViewBody extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
     );
   }
 }

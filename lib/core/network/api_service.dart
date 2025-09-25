@@ -58,6 +58,33 @@ class ApiService {
       }
     }
   }
+  Future<dynamic> postMultipart({
+    required String endPoint,
+    required FormData data,
+  }) async {
+    try {
+      final token = await AppPreferences.getToken();
+
+      var response = await dio.post(
+        "$baseUrl$endPoint",
+        data: data,
+        options: Options(
+          headers: {
+            "Content-Type": "multipart/form-data",
+            if (token != null) "Authorization": "Bearer $token",
+          },
+        ),
+      );
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        return e.response?.data;
+      } else {
+        throw Exception("Network error: ${e.message}");
+      }
+    }
+  }
+
   Future<dynamic> delete({
     required String endPoint,
     required Map<String, dynamic> data,

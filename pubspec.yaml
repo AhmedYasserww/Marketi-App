@@ -37,6 +37,8 @@ dependencies:
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.0.0
   cached_network_image:
+  equatable:
+  image_picker: ^1.1.2
 
 
 

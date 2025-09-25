@@ -22,9 +22,9 @@ class ProfileMenuSection extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 8),
-          ...ProfileMenuData.menuItems.map((item) => ProfileMenuItem(
+          ...ProfileMenuData.menuItems(context).map((item) => ProfileMenuItem(
             data: item,
-            isLast: item == ProfileMenuData.menuItems.last,
+            isLast: item == ProfileMenuData.menuItems(context).last,
           )),
           const SizedBox(height: 20),
           // Bottom indicator

@@ -6,7 +6,6 @@ static const String routeName='favorite';
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white,
       body: FavoriteViewBody(),
     );
   }

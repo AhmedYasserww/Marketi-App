@@ -2,16 +2,31 @@
 class Assets {
   Assets._();
 
+  static const String imagesAirBudsTest = 'assets/images/Air_Buds_test.png';
   static const String imagesAppleIcon = 'assets/images/apple_icon.svg';
   static const String imagesCheckIcon = 'assets/images/check_icon.svg';
+  static const String imagesElectronicsTest = 'assets/images/Electronics_test.png';
   static const String imagesFacebookIcon = 'assets/images/facebook_icon.svg';
+  static const String imagesFashionTest = 'assets/images/Fashion_test.png';
   static const String imagesFilterIcon = 'assets/images/filterIcon.svg';
+  static const String imagesFoodTest = 'assets/images/Food_test.png';
   static const String imagesGoogleIcon = 'assets/images/google_icon.svg';
+  static const String imagesIPhoneTest = 'assets/images/iPhone_test.png';
+  static const String imagesJBLTest = 'assets/images/JBL_test.png';
+  static const String imagesLaptopHPChromebookLaptopTest = 'assets/images/Laptop_HP_Chromebook_laptop_test.png';
   static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesOffer1 = 'assets/images/Offer_1.png';
   static const String imagesOnboarding2 = 'assets/images/_Onboarding_2.svg';
   static const String imagesOnboardingImage1 = 'assets/images/onboarding_image_1.svg';
   static const String imagesOnboardingImage3 = 'assets/images/onboarding_image_3.svg';
+  static const String imagesPampersTest = 'assets/images/Pampers_test.png';
+  static const String imagesPhone2 = 'assets/images/Phone_2.png';
+  static const String imagesPlantTest = 'assets/images/Plant_test.png';
   static const String imagesProfile = 'assets/images/profile.png';
+  static const String imagesSONYBrandTest = 'assets/images/SONY_Brand_test.png';
   static const String imagesSearchIcon = 'assets/images/Search_Icon.svg';
+  static const String imagesSmartTv = 'assets/images/Smart_Tv.png';
+  static const String imagesSmartWatchTest = 'assets/images/Smart_Watch_test.png';
+  static const String imagesTownTeamTest = 'assets/images/Town_Team_test.png';
 
 }

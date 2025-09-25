@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi_app/core/utils/app_color.dart';
 import 'package:marketi_app/features/profile/presentation/views/widgets/profile_details_widgets/profile_menu_item_data.dart';
 
 class ProfileMenuItem extends StatelessWidget {
@@ -46,7 +47,7 @@ class ProfileMenuItem extends StatelessWidget {
                   Switch(
                     value: data.toggleValue ?? false,
                     onChanged: data.onToggleChanged,
-                    activeColor: const Color(0xFF4F8EF7),
+                    activeColor:  AppColors.primaryColor,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                 ] else ...[

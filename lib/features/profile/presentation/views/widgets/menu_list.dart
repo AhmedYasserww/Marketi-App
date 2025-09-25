@@ -16,13 +16,7 @@ class MenuList extends StatelessWidget {
 Navigator.of(context).pushNamed(ProfileDetailsView.routeName);
         }
       ),
-      MenuItemData(
-        icon: Icons.edit,
-        title: 'Edit Profile',
-        onTap: () {
 
-        }
-      ),
     ];
 
     return ListView.separated(

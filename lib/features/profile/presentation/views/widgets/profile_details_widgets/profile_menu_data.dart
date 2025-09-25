@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi_app/core/utils/theme_dark_mode.dart';
 import 'package:marketi_app/features/profile/presentation/views/widgets/profile_details_widgets/profile_menu_item_data.dart';
 
 class ProfileMenuData {
-  static List<ProfileMenuItemData> menuItems = [
+  static List<ProfileMenuItemData> menuItems(BuildContext context) => [
 
     ProfileMenuItemData(
       icon: Icons.credit_card_outlined,
@@ -13,8 +15,10 @@ class ProfileMenuData {
       icon: Icons.dark_mode_outlined,
       title: 'Dark Mode',
       hasToggle: true,
-      toggleValue: false,
-      onToggleChanged: (value) => print('Dark Mode: $value'),
+      toggleValue: context.watch<ThemeCubit>().state == ThemeMode.dark,
+      onToggleChanged: (value) {
+        context.read<ThemeCubit>().toggleTheme(value);
+      },
     ),
     ProfileMenuItemData(
       icon: Icons.star_outline,

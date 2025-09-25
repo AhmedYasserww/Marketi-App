@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marketi_app/core/helper_functions/on_generate_routes.dart';
+import 'package:marketi_app/core/utils/theme_dark_mode.dart';
 import 'package:marketi_app/features/cart/data/repo/cart_repo_imp.dart';
 import 'package:marketi_app/features/cart/presentation/manager/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'package:marketi_app/features/favorite/data/repos/favorite_repo_imp.dart';
-import 'package:marketi_app/features/favorite/presentation/manager/add_to_favorite_cubit/add_to_favorite_cubit.dart';
 import 'package:marketi_app/features/favorite/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:marketi_app/features/home/data/repos/product_filter/product_filter_repo_imp.dart';
 import 'package:marketi_app/features/navigation_bar/presentation/views/button_nav_bar_view.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return  MultiBlocProvider(
       providers: [
 
-
+        BlocProvider(create: (_) => ThemeCubit()),
        // BlocProvider(
        //      create: (_) => GetAllProductBySingleCategoryCubit(getIt.get<GetAllProductBySingleProductRepoImp>()),
        //    ),
@@ -60,20 +60,30 @@ class MyApp extends StatelessWidget {
 
       ],
 
-        child: MaterialApp(
-            theme:  ThemeData(
-                scaffoldBackgroundColor: Colors.white,
-              textTheme: GoogleFonts.poppinsTextTheme(),
-            ),
-
-            debugShowCheckedModeBanner: false,
+        child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: GoogleFonts.poppinsTextTheme(),
+            brightness: Brightness.light,
+          ),
+          darkTheme: ThemeData(
+            scaffoldBackgroundColor: Colors.black,
+            textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
+            brightness: Brightness.dark,
+          ),
+          themeMode: themeMode,
             onGenerateRoute: onGenerateRoutes,
             //initialRoute: SplashView.routeName,
             initialRoute: ButtonNavBarView.routeName
 
 
-        ),
       );
+        },
+        ),
+    );
 
   }
 }
